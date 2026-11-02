@@ -1,0 +1,1157 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#123c3d">
+<meta name="description" content="Interaktive Lernsimulation zu Kunden-, Mitarbeiter- und Administratorkonten. Fiktive Bank, verständliche Rechte und konkrete Auswirkungen.">
+<title>Ein Konto. Welche Folgen? · IKT-Spielwiese</title>
+<style>:root{--ink:#173738;--muted:#587070;--teal:#14645e;--teal-dark:#103e3b;--mint:#e8f4ed;--paper:#f6f7f2;--line:#dce6df;--amber:#a65b07;--amber-bg:#fff4dd;--blue:#315c98;--blue-bg:#edf3fd;--red:#a53036;--red-bg:#fff0ef;--shadow:0 7px 24px #17373805;--radius:18px;--body-size:16px}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:20px}body{margin:0;color:var(--ink);background:var(--paper);font:var(--body-size)/1.5 "Segoe UI",Arial,sans-serif;-webkit-font-smoothing:antialiased}button,input{font:inherit}button{cursor:pointer}button:disabled{cursor:default;opacity:.55}a{color:var(--teal);text-underline-offset:3px}button:focus-visible,a:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid #e4a335;outline-offset:4px}button svg,[data-icon] svg,.feedback-icon svg,.identity-avatar svg{width:22px;height:22px;display:block;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}h1,h2,h3,p{margin:0}h2{font-size:1.12rem;line-height:1.35;letter-spacing:-.015em}h3{font-size:1.04rem;line-height:1.4}strong{font-weight:650}button{color:inherit}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.skip-link{position:absolute;top:-100px;left:20px;z-index:100;background:white;padding:12px}.skip-link:focus{top:10px}
+.topbar{min-height:78px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:14px max(28px,calc((100vw - 1380px)/2));gap:20px;background:#fffdf8}.brand{display:flex;gap:10px;align-items:center;text-decoration:none;color:var(--ink);font-size:1rem;font-weight:750;white-space:nowrap;letter-spacing:-.02em}.brand-light{font-weight:450}.brand-mark{width:36px;height:36px;background:var(--teal-dark);border-radius:11px;color:#fff;display:grid;place-items:center}.brand-mark svg{width:28px;height:28px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}.top-actions{display:flex;align-items:center;gap:11px}.fiction-tag{font-size:.75rem;color:var(--muted);border:1px solid var(--line);padding:5px 10px;border-radius:20px;white-space:nowrap}.button{border:1px solid transparent;border-radius:9px;min-height:42px;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:9px 13px;font-weight:600;font-size:.85rem;transition:background .15s,border-color .15s}.button.subtle{background:transparent;border-color:var(--line)}.button.subtle:hover{background:#ecf2ed}.button.primary{background:var(--teal-dark);color:white}.button.primary:hover{background:#1b5650}.button [data-icon] svg{width:17px;height:17px}
+main{max-width:1380px;margin:auto;padding:0 28px}.intro{padding:36px 0 27px;max-width:900px}.eyebrow{font-size:.67rem;font-weight:750;letter-spacing:.15em;color:var(--teal);margin-bottom:9px}.eyebrow.small{font-size:.61rem;margin-bottom:6px}.intro h1{font-size:clamp(2.2rem,4vw,3.4rem);line-height:1.1;font-weight:750;letter-spacing:-.052em}.intro h1 span{color:var(--teal)}.mobile-break{display:none}.intro-text{max-width:770px;margin-top:14px;color:var(--muted);font-size:1rem;line-height:1.65}.section-line{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:16px}.section-line h2,.controls h2{display:flex;align-items:center;gap:9px}.step{display:inline-flex;flex-shrink:0;align-items:center;justify-content:center;width:24px;height:24px;border:1px solid #bdcfc4;border-radius:7px;font-size:.76rem;font-weight:700;color:var(--teal);background:#edf4ee}.text-button{border:0;background:none;padding:3px 0;color:var(--teal);font-size:.8rem;font-weight:650;display:inline-flex;align-items:center;gap:6px}.text-button:hover{text-decoration:underline;text-underline-offset:4px}.text-button [data-icon] svg{width:15px;height:15px}
+.role-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}.role-card{position:relative;background:#fffdf8;border:1px solid #d5e0d8;border-radius:13px;padding:18px;text-align:left;display:flex;align-items:center;gap:14px;min-height:103px;transition:border-color .16s,background .16s,box-shadow .16s}.role-card:hover{border-color:#7da99b;box-shadow:var(--shadow)}.role-card.selected{background:#e7f2e9;border:1.5px solid var(--teal);padding:17.5px;box-shadow:0 0 0 2px #14645e08}.role-icon{width:45px;height:45px;border:1px solid #dce8df;border-radius:13px;display:grid;place-items:center;color:var(--teal);background:#f2f6ef;flex-shrink:0}.role-icon svg{width:24px;height:24px}.selected .role-icon{background:#fff9;border-color:#c4dbcd}.role-copy{display:flex;flex-direction:column;gap:2px;padding-right:12px}.role-kicker{font-size:.56rem;font-weight:750;color:var(--muted);letter-spacing:.12em}.role-copy strong{font-size:1.04rem;line-height:1.35}.role-copy>span:last-child{font-size:.76rem;color:var(--muted)}.choice-indicator{position:absolute;right:13px;top:13px;border:1.5px solid #bdcfc4;border-radius:50%;width:12px;height:12px}.selected .choice-indicator{border:3px solid var(--teal);background:#cce6d7}.role-reset-hint{margin:7px 0 19px;font-size:.68rem;color:#687c75}
+.playground{display:grid;grid-template-columns:320px minmax(0,1fr);align-items:start;gap:20px}.panel{background:#fffefa;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}.controls{padding:21px}.controls h2{font-size:.96rem;margin-bottom:15px;line-height:1.4}.entry-options{padding:0;margin:0;border:0;display:grid;gap:8px}.radio-option{display:flex;gap:10px;align-items:flex-start;padding:11px;border:1px solid var(--line);border-radius:9px;background:#fafbf6;cursor:pointer}.radio-option:has(input:checked){background:var(--mint);border-color:#91bba7}.radio-option input{accent-color:var(--teal);margin:4px 0 0;width:15px;height:15px;flex-shrink:0}.radio-option strong{display:block;font-size:.8rem;line-height:1.4}.radio-option small{display:block;font-size:.71rem;color:var(--muted);margin-top:3px;line-height:1.5}.toggle-row{position:relative;display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:17px;cursor:pointer}.toggle-row strong{display:block;font-size:.8rem}.toggle-row small{display:block;font-size:.68rem;color:var(--muted);margin-top:2px}.toggle-row input{position:absolute;right:0;width:39px;height:25px;opacity:0;cursor:pointer}.switch-track{width:38px;height:22px;flex-shrink:0;background:#bccbc2;border-radius:20px;position:relative;pointer-events:none;transition:background .15s}.switch-track:after{content:"";width:16px;height:16px;border-radius:50%;background:white;position:absolute;left:3px;top:3px;box-shadow:0 1px 4px #0002;transition:transform .15s}.toggle-row input:checked+.switch-track{background:var(--teal)}.toggle-row input:checked+.switch-track:after{transform:translateX(16px)}.toggle-row input:focus-visible+.switch-track{outline:3px solid #e4a335;outline-offset:4px}.context-hint{font-size:.71rem;color:var(--muted);line-height:1.55;margin-top:12px;border-left:2px solid #c9dacf;padding-left:10px}.control-divider{height:1px;background:var(--line);margin:20px 0}.small-text{font-size:.72rem;color:var(--muted);line-height:1.55}.controls>.small-text{margin-top:-7px;margin-bottom:14px}.action-stack{display:grid;gap:8px}.action-button{background:#fffefa;border:1px solid #d8e4db;border-radius:10px;padding:12px 11px;display:flex;gap:10px;align-items:center;text-align:left;transition:background .15s,transform .15s}.action-button:hover{background:#f1f7ef;border-color:#94b9a3;transform:translateX(2px)}.action-button>span:nth-child(2){font-size:.81rem;font-weight:650;line-height:1.4}.action-button small{display:block;font-size:.65rem;font-weight:400;color:var(--muted);margin-top:2px}.action-button>[data-icon]{color:var(--teal)}.action-button svg{width:19px;height:19px}.action-arrow{margin-left:auto;color:#5c8174}.response-box{margin-top:20px;padding-top:17px;border-top:1px solid var(--line)}.mini-label{font-size:.58rem;font-weight:750;letter-spacing:.11em;color:var(--muted);line-height:1.5}.contain-button{width:100%;margin-top:9px;border:1px solid #bad0c2;color:var(--teal-dark);background:#eaf2e9;font-size:.7rem;padding:10px 7px}.contain-button:hover{background:#dcebdc}.contain-button svg,.restore-button svg{width:16px;height:16px}.restore-button{width:100%;font-size:.7rem;background:var(--teal-dark);color:white;margin-top:8px}.response-box p{margin-top:9px;font-size:.66rem}.reset-button{margin-top:16px;font-size:.72rem}
+.workspace{display:grid;gap:15px;min-width:0}.map-panel{padding:23px}.map-heading{display:flex;justify-content:space-between;align-items:center;gap:13px;margin-bottom:18px}.map-heading h2{font-size:1.2rem}.status-chip{font-size:.65rem;border:1px solid;border-radius:20px;display:inline-flex;align-items:center;gap:5px;padding:5px 10px;white-space:nowrap}.status-chip:before{content:"";width:6px;height:6px;background:currentColor;border-radius:50%}.status-chip.active{background:#e7f3e9;color:#226b4b;border-color:#bddbc7}.status-chip.blocked{background:#f1f3ed;color:#6c786e;border-color:#d5ded4}.access-map{position:relative;isolation:isolate}.connections{position:absolute;inset:0;width:100%;height:100%;z-index:-1;overflow:visible;pointer-events:none}.connection{fill:none;stroke:#dce4da;stroke-width:1.2;opacity:.9;transition:stroke .25s}.connection.direct{stroke:#8ab3a0;stroke-width:1.8;stroke-dasharray:5 5;animation:flow 3s linear infinite}.connection.guarded{stroke:#97b2d5;stroke-dasharray:3 4}.connection.review{stroke:#d7b174;stroke-dasharray:2 5}.identity-bar{position:relative;display:flex;align-items:center;gap:12px;padding:13px 16px;border-radius:13px;background:var(--teal-dark);color:white;max-width:100%;min-height:75px}.identity-avatar{display:grid;place-items:center;width:38px;height:38px;background:#ffffff16;border:1px solid #ffffff25;border-radius:11px;flex-shrink:0}.identity-avatar svg{width:23px;height:23px}.identity-bar strong{display:block;font-size:.95rem}.identity-bar p{color:#d4e7dc;font-size:.71rem;margin-top:2px;line-height:1.5}.identity-badge{font-size:.58rem;white-space:nowrap;padding:4px 7px;border:1px solid #7eaaa0;border-radius:5px;margin-left:auto;color:#e1f0e7}.resource-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px 12px;padding-top:29px}.resource-card{text-align:left;background:#fffefa;border:1px solid #dbe5dd;border-radius:12px;padding:14px 12px;min-height:129px;display:flex;flex-direction:column;gap:5px;position:relative;transition:transform .15s,box-shadow .15s,border-color .15s}.resource-card:hover{transform:translateY(-2px);box-shadow:0 4px 15px #1737380b}.resource-card:before{content:"";position:absolute;top:-4px;left:calc(50% - 3px);width:6px;height:6px;border:1px solid #c7d7ca;border-radius:50%;background:#fffefa}.resource-top{display:flex;align-items:center;justify-content:space-between;gap:4px}.resource-top>[data-icon]{color:#8a9c91}.resource-top svg{width:20px;height:20px}.resource-number{font-size:.58rem;color:#82938a}.resource-card strong{font-size:.8rem;line-height:1.4}.resource-card .resource-scope{font-size:.65rem;color:var(--muted);line-height:1.45;margin-bottom:4px}.resource-badge{font-size:.59rem;color:#7b8b80;line-height:1.3;margin-top:auto;display:flex;align-items:center;gap:4px}.resource-badge:before{content:"";width:5px;height:5px;border-radius:50%;background:currentColor;flex-shrink:0}.resource-card.direct{border-color:#afcfb9;background:#f2f8ef}.resource-card.direct .resource-badge,.resource-card.direct .resource-top>[data-icon]{color:var(--teal)}.resource-card.guarded{background:#f3f7fc;border-color:#c4d5ec}.resource-card.guarded .resource-badge,.resource-card.guarded .resource-top>[data-icon]{color:var(--blue)}.resource-card.review{background:#fff8ea;border-color:#e5cd9b}.resource-card.review .resource-badge,.resource-card.review .resource-top>[data-icon]{color:var(--amber)}.resource-card.selected{box-shadow:0 0 0 2px #6b967f55;outline:0;border-color:var(--teal)}.resource-card.none{background:#f7f8f3}.resource-card.none strong{color:#65776e}.resource-card.direct:before{background:var(--teal);border-color:var(--teal)}.resource-card.review:before{background:#c99339;border-color:#c99339}.resource-card.guarded:before{background:#759ad0;border-color:#759ad0}.legend{display:flex;flex-wrap:wrap;gap:6px 16px;padding-top:15px;color:var(--muted);font-size:.61rem}.legend span{display:flex;align-items:center;gap:5px}.legend-dot{width:6px;height:6px;border-radius:50%;background:#9cab9d}.legend-dot.direct{background:var(--teal)}.legend-dot.guarded{background:#7197ce}.legend-dot.review{background:#c99339}.legend-dot.none{background:#9cab9d}.resource-detail{background:#f6f8f1;border:1px solid #e3e9df;border-radius:10px;padding:13px 15px;margin-top:15px;font-size:.74rem;line-height:1.6;min-height:96px}.resource-detail strong{font-size:.78rem;display:block;margin-bottom:4px}.resource-detail .detail-tag{font-weight:600;color:var(--teal)}
+.feedback-panel{display:flex;gap:12px;padding:18px 20px;border-radius:13px;border:1px solid #c8ddd0;background:#edf5eb;transition:background .2s}.feedback-panel.warning{background:var(--amber-bg);border-color:#e8cf9d}.feedback-panel.danger{background:var(--red-bg);border-color:#edc7c5}.feedback-panel.neutral{background:#f0f3ed;border-color:#d5dfd2}.feedback-icon{width:31px;height:31px;border-radius:9px;background:#fff9;display:grid;place-items:center;color:var(--teal);flex-shrink:0;margin-top:4px}.feedback-panel.warning .feedback-icon{color:var(--amber)}.feedback-panel.danger .feedback-icon{color:var(--red)}.feedback-panel h3{margin:3px 0 5px}.feedback-panel p{font-size:.8rem;color:#466158;line-height:1.6;max-width:790px}.feedback-panel.warning p{color:#72552a}.feedback-panel.danger p{color:#744448}.services-panel{padding:19px 22px}.services-panel .section-line{margin-bottom:13px}.services-panel h2{font-size:1rem}.service-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}.service-card{background:#f3f8ef;border:1px solid #d9e6d4;border-radius:9px;padding:11px 9px;display:flex;flex-direction:column;gap:5px}.service-card .service-name{font-size:.72rem;font-weight:650;display:flex;align-items:center;gap:5px}.service-card svg{width:15px;height:15px}.service-card .service-state{font-size:.62rem;color:#3c7455;display:flex;align-items:center;gap:5px}.service-card .service-state:before{content:"";width:5px;height:5px;background:#4d8c5f;border-radius:50%;flex-shrink:0}.service-card.down{background:#fff1ef;border-color:#edcac5}.service-card.down .service-state{color:var(--red)}.service-card.down .service-state:before{background:var(--red)}.service-note{font-size:.72rem;line-height:1.6;color:var(--muted);margin-top:11px}.impact-line{margin-top:13px;display:flex;flex-wrap:wrap;gap:7px}.impact-pill{padding:5px 8px;border-radius:5px;background:#f0f2e9;color:#5a7263;font-size:.62rem}.impact-pill.warn{background:#fff1d6;color:#8e5a0c}.impact-pill.alert{background:#fce5e1;color:#9b3839}.board-panel{display:flex;align-items:flex-start;gap:12px;background:#e8eee4;border:1px solid #d4dfce;border-radius:12px;padding:16px 19px}.board-icon{display:block;flex-shrink:0;margin-top:5px;color:var(--teal)}.board-icon svg{width:24px;height:24px}.board-panel p{font-size:.87rem;font-weight:600;line-height:1.55;margin-top:3px}
+.end-notes{margin:26px 0 20px;display:grid;gap:10px}details{border:1px solid var(--line);border-radius:11px;background:#fbfcf7;font-size:.8rem}summary{padding:14px 17px;cursor:pointer;font-weight:600;color:#3d5a4b}details[open] summary{border-bottom:1px solid var(--line)}.details-body{padding:17px 22px;font-size:.8rem;color:var(--muted);line-height:1.75}.details-body ul,.details-body ol{padding-left:21px}.details-body li{margin:8px 0}.details-body p+p{margin-top:10px}.footer{display:flex;justify-content:space-between;gap:15px;padding:15px 0 28px;color:#728171;font-size:.65rem;border-top:1px solid var(--line)}
+.modal{border:1px solid #cad8cc;border-radius:20px;padding:25px;max-width:min(690px,calc(100vw - 30px));width:690px;max-height:90vh;background:#fffefa;color:var(--ink);box-shadow:0 24px 100px #081f2a44}.modal::backdrop{background:#0e2f35aa;backdrop-filter:blur(4px)}.wide-modal{width:940px;max-width:min(940px,calc(100vw - 30px))}.modal-head{display:flex;align-items:flex-start;justify-content:space-between;gap:15px;margin-bottom:15px}.modal-head h2{font-size:1.4rem}.icon-button{width:31px;height:31px;border:1px solid var(--line);border-radius:8px;background:#f4f7ef;font-size:1.3rem;line-height:1;flex-shrink:0}.modal-note{font-size:.83rem;color:var(--muted);line-height:1.65;margin-bottom:16px}.input-label{font-size:.76rem;font-weight:600;display:block;margin-bottom:6px}.url-row{display:flex;gap:8px;align-items:stretch}.url-row input{border:1px solid #bacfc0;border-radius:8px;padding:10px 11px;min-width:0;flex:1;font-size:.8rem;background:white;color:var(--ink)}.url-row button{font-size:.73rem}.form-error{font-size:.73rem;color:var(--red);margin-top:7px;min-height:0}.form-error:empty{display:none}.qr-result{text-align:center;border:1px solid var(--line);background:#f6f8f0;border-radius:13px;margin:18px 0;padding:18px}.qr-result[hidden]{display:none}.qr-mount{padding:10px;background:white;display:inline-block;max-width:260px;border-radius:8px}.qr-mount svg{width:230px;height:230px;display:block;max-width:100%}.qr-caption{font-size:.9rem;font-weight:650;margin-top:10px}.qr-url{font-size:.65rem;color:var(--muted);overflow-wrap:anywhere;max-width:100%;margin:6px 0 14px}.download-actions{display:flex;gap:9px;justify-content:center;flex-wrap:wrap}#shareStatus{margin-top:10px}.github-instructions{margin-top:18px;background:#f9fbf4}.github-instructions ol{padding:0 25px 0 36px;font-size:.79rem;color:var(--muted)}.github-instructions li{margin:10px 0}.github-instructions p{padding:0 17px 13px;font-size:.74rem}.github-instructions code{font-size:.71rem;overflow-wrap:anywhere;color:var(--ink)}.comparison-scroll{overflow:auto;margin-bottom:18px}.comparison-table{width:100%;border-collapse:collapse;font-size:.8rem;min-width:620px}.comparison-table th,.comparison-table td{padding:13px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}.comparison-table thead th{background:#e7f0e5;font-size:.78rem;color:var(--teal-dark)}.comparison-table tbody th{font-weight:650;width:18%}.comparison-table td{width:27%;color:var(--muted)}.comparison-table tbody tr:nth-child(even){background:#f7f9f2}
+body.presenter{--body-size:18px}.presenter main{max-width:1580px}.presenter .intro{padding-top:22px}.presenter .intro h1{font-size:2.8rem}.presenter .intro-text{font-size:1.02rem}.presenter .playground{grid-template-columns:340px minmax(0,1fr)}.presenter .controls h2{font-size:1.1rem}.presenter .role-copy strong{font-size:1.18rem}.presenter .radio-option strong,.presenter .action-button>span:nth-child(2){font-size:.96rem}.presenter .resource-card strong{font-size:.96rem}.presenter .resource-scope{font-size:.75rem}.presenter .resource-badge{font-size:.73rem}.presenter .feedback-panel p{font-size:.94rem}.presenter .resource-detail{font-size:.88rem}.presenter .resource-detail strong{font-size:.92rem}.presenter .service-card .service-name{font-size:.83rem}.presenter .service-card .service-state{font-size:.75rem}.presenter .board-panel p{font-size:1rem}
+@keyframes flow{to{stroke-dashoffset:-30}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+@media(min-width:1500px){:root{--body-size:17px}.controls{padding:23px}.resource-card{min-height:135px}}
+@media(max-width:1100px){.playground{grid-template-columns:290px minmax(0,1fr);gap:15px}.controls{padding:17px}.map-panel{padding:18px}.map-heading h2{font-size:1.05rem}.resource-grid{gap:17px 8px}.resource-card{padding:11px 9px;min-height:132px}.role-card{padding:15px;gap:10px}.role-card.selected{padding:14.5px}.role-icon{width:38px;height:38px}.role-copy strong{font-size:.94rem}.role-copy>span:last-child{font-size:.69rem}.identity-badge{display:none}.service-grid{gap:6px}.service-card{padding:9px 6px}.service-card .service-name{font-size:.66rem}.presenter .playground{grid-template-columns:300px minmax(0,1fr)}}
+@media(max-width:900px){.topbar{padding:13px 22px}.top-actions .fiction-tag{display:none}.top-actions .button{font-size:.75rem;padding:8px 10px}.playground,.presenter .playground{grid-template-columns:1fr}.controls{display:grid;grid-template-columns:1fr 1fr;gap:0 25px;padding:20px}.controls>h2:first-child{grid-column:1}.entry-options{grid-column:1;grid-row:2/5;align-self:start}.toggle-row{grid-column:1;margin-top:12px;align-self:start}.context-hint{grid-column:1}.control-divider{display:none}.controls>h2:nth-of-type(2){grid-column:2;grid-row:1}.controls>.small-text{grid-column:2;grid-row:2}.action-stack{grid-column:2;grid-row:3/7;align-self:start}.response-box{grid-column:1;grid-row:7;margin-top:12px}.reset-button{grid-column:2;grid-row:7;align-self:end;justify-self:start}.resource-card{min-height:122px}.resource-card strong{font-size:.87rem}.resource-card .resource-scope{font-size:.73rem}.resource-badge{font-size:.67rem}.resource-detail{font-size:.81rem}.service-card .service-name{font-size:.78rem}.service-card .service-state{font-size:.69rem}.identity-badge{display:inline}.role-card{gap:10px;align-items:flex-start}.role-icon{width:35px;height:35px}.role-copy>span:last-child{line-height:1.45}.map-heading h2{font-size:1.2rem}.feedback-panel p{font-size:.86rem}}
+@media(max-width:620px){:root{--body-size:16px}.topbar{min-height:65px;padding:10px 15px;gap:8px}.brand{font-size:.84rem;gap:8px}.brand-mark{width:30px;height:30px;border-radius:9px}.brand-mark svg{width:24px;height:24px}.brand-light{display:none}.top-actions{gap:5px}.top-actions .button{padding:7px 8px;min-height:36px;font-size:.66rem;gap:5px}.top-actions .button svg{width:15px;height:15px}#presenterBtn{display:none}main{padding:0 15px}.intro{padding:26px 0 23px}.intro h1,.presenter .intro h1{font-size:2.5rem;line-height:1.04}.mobile-break{display:block}.intro-text{font-size:.88rem;line-height:1.65;margin-top:13px}.eyebrow{font-size:.59rem}.section-line{align-items:flex-start;gap:10px;margin-bottom:12px}.section-line h2{font-size:1rem;white-space:nowrap}.account-picker>.section-line{flex-direction:column;gap:8px}.role-grid{gap:7px}.role-card{padding:12px 7px;min-height:128px;display:flex;flex-direction:column;gap:8px;border-radius:11px}.role-card.selected{padding:11.5px 6.5px}.role-icon{width:28px;height:28px;border-radius:8px}.role-icon svg{width:18px;height:18px}.role-copy{padding:0;gap:3px}.role-copy strong{font-size:.75rem;overflow-wrap:anywhere}.role-copy>span:last-child{font-size:.6rem;line-height:1.45}.role-kicker{font-size:.47rem}.choice-indicator{right:8px;top:8px;width:9px;height:9px}.selected .choice-indicator{border-width:2.5px}.role-reset-hint{font-size:.62rem;margin-bottom:15px}.controls{display:flex;flex-direction:column;padding:17px;gap:0}.controls h2{font-size:.97rem}.entry-options{display:grid;grid-template-columns:1fr 1fr;gap:8px}.radio-option{padding:10px 8px;gap:6px}.radio-option input{width:13px;height:13px}.radio-option strong{font-size:.75rem}.radio-option small{font-size:.65rem}.toggle-row{margin-top:15px}.context-hint{font-size:.72rem}.control-divider{display:block;margin:17px 0}.controls>h2:nth-of-type(2){margin-bottom:13px}.controls>.small-text{margin-bottom:12px;font-size:.7rem}.action-stack{display:grid;grid-template-columns:1fr 1fr;gap:8px}.action-button{padding:11px 9px;align-items:flex-start;gap:7px;min-height:79px}.action-button>span:nth-child(2){font-size:.75rem}.action-button small{font-size:.61rem;line-height:1.45}.action-button svg{width:17px;height:17px}.action-arrow{display:none}.response-box{margin-top:16px;padding-top:14px}.contain-button{font-size:.8rem;min-height:43px}.response-box p{font-size:.7rem}.reset-button{margin-top:13px;font-size:.76rem}.map-panel{padding:17px 13px}.map-heading{align-items:flex-start;gap:8px;flex-direction:column;margin-bottom:14px}.map-heading h2{font-size:1.08rem}.map-heading .eyebrow.small{font-size:.56rem}.status-chip{font-size:.65rem}.identity-bar{padding:12px 10px;gap:9px}.identity-avatar{width:32px;height:32px;border-radius:9px}.identity-avatar svg{width:20px;height:20px}.identity-bar strong{font-size:.87rem}.identity-bar p{font-size:.65rem}.identity-badge{display:none}.resource-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:17px 9px;padding-top:24px}.resource-card{padding:12px 10px;min-height:130px}.resource-card strong{font-size:.79rem}.resource-card .resource-scope{font-size:.66rem}.resource-badge{font-size:.62rem}.resource-top svg{width:19px;height:19px}.legend{font-size:.6rem;gap:7px 12px}.resource-detail{padding:12px;font-size:.76rem;min-height:110px}.resource-detail strong{font-size:.8rem}.feedback-panel{padding:16px 13px;gap:9px}.feedback-panel h3{font-size:.98rem}.feedback-panel p{font-size:.78rem}.feedback-icon{width:27px;height:27px}.feedback-icon svg{width:18px;height:18px}.services-panel{padding:17px 13px}.services-panel .section-line{flex-direction:column;gap:3px}.services-panel h2{font-size:.96rem}.service-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.service-card{padding:11px}.service-card .service-name{font-size:.74rem}.service-card .service-state{font-size:.67rem}.service-note{font-size:.73rem}.impact-pill{font-size:.62rem}.board-panel{padding:14px;gap:9px}.board-panel p{font-size:.83rem}.footer{flex-direction:column;gap:5px;font-size:.6rem;padding-bottom:24px}.end-notes{margin-top:18px}.details-body{padding:14px 17px;font-size:.77rem}.modal{padding:19px;max-width:calc(100vw - 22px);max-height:92vh;border-radius:15px}.modal-head h2{font-size:1.18rem}.url-row{flex-direction:column}.url-row input{min-height:43px}.qr-mount svg{width:210px;height:210px}.qr-result{padding:13px}.github-instructions ol{padding-left:31px;padding-right:15px}}
+@media print{.topbar,.controls,.end-notes,.footer,.account-picker>.section-line .text-button{display:none}body{background:white}main{padding:0;max-width:none}.intro{padding:0 0 15px}.playground{display:block}.workspace{display:grid;gap:10px}.panel,.feedback-panel,.board-panel{break-inside:avoid}.connections{display:none}.role-card{padding:10px}.role-card.selected{padding:9.5px}.intro h1{font-size:30px}.resource-card{min-height:100px}.resource-grid{padding-top:15px}.role-reset-hint{display:none}}
+
+[hidden]{display:none!important}.entry-settings{margin-bottom:17px;background:#f5f8ef}.entry-settings summary{padding:13px 12px;list-style:none;position:relative}.entry-settings summary::-webkit-details-marker{display:none}.entry-settings summary:after{content:"+";position:absolute;right:12px;top:22px;font-size:20px;color:var(--teal)}.entry-settings[open] summary:after{content:"−"}.entry-settings summary strong{display:block;font-size:.81rem;margin:3px 20px 3px 0}.entry-settings summary small{display:block;color:var(--muted);font-size:.65rem}.entry-body{padding:12px}.controls{display:block}.intro{padding-top:28px;padding-bottom:24px}.presenter .intro{padding:15px 0}.presenter .intro-text,.presenter .intro>.eyebrow{display:none}.presenter .intro h1{font-size:2.1rem}.presenter .role-card{min-height:80px;padding-top:11px;padding-bottom:11px}@media(min-width:621px) and (max-width:900px){.controls .action-stack{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:620px){.intro{padding-top:23px}.entry-settings summary strong{font-size:.82rem}.resource-card strong{font-size:.86rem}.resource-card .resource-scope{font-size:.72rem}.resource-badge{font-size:.68rem}.entry-options{grid-template-columns:1fr}.radio-option strong{font-size:.8rem}.radio-option small{font-size:.72rem}.feedback-panel p{font-size:.84rem}}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#playground">Zur Spielwiese</a>
+<header class="topbar">
+  <a class="brand" href="#" aria-label="Ein Konto. Welche Folgen? Start"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M6 25V13l10-6 10 6v12M4 26h24M12 15v7m8-7v7M8 12h16"/></svg></span><span>IKT<span class="brand-light"> · Spielwiese</span></span></a>
+  <div class="top-actions"><span class="fiction-tag">Fiktive Bank</span><button class="button subtle" id="presenterBtn" aria-pressed="false"><span data-icon="expand"></span><span>Vortragsansicht</span></button><button class="button subtle" id="shareBtn"><span data-icon="qr"></span><span>Link &amp; QR-Code</span></button></div>
+</header>
+<main>
+<section class="intro">
+  <p class="eyebrow">ZUGÄNGE VERSTEHEN · FOLGEN ERKENNEN</p>
+  <h1>Ein Konto.<br class="mobile-break"> <span>Welche Folgen?</span></h1>
+  <p class="intro-text">Ein Zugang gerät in falsche Hände. Entdecken Sie, welche Rechte dahinterstehen und was das für eine Bank bedeuten kann.</p>
+</section>
+<section class="account-picker" aria-labelledby="chooseHeading">
+  <div class="section-line"><h2 id="chooseHeading"><span class="step">1</span> Wählen Sie ein Konto</h2><button class="text-button" id="compareBtn">Die drei Fälle vergleichen <span aria-hidden="true">↗</span></button></div>
+  <div class="role-grid" role="group" aria-label="Konto auswählen">
+    <button class="role-card selected" data-role="customer" aria-pressed="true"><span class="role-icon" data-icon="person"></span><span class="role-copy"><span class="role-kicker">FALL 01</span><strong>Kundenkonto</strong><span>Eigene Konten und Unterlagen</span></span><span class="choice-indicator" aria-hidden="true"></span></button>
+    <button class="role-card" data-role="employee" aria-pressed="false"><span class="role-icon" data-icon="badge"></span><span class="role-copy"><span class="role-kicker">FALL 02</span><strong>Mitarbeiterkonto</strong><span>Kundenservice mit begrenzten Rechten</span></span><span class="choice-indicator" aria-hidden="true"></span></button>
+    <button class="role-card" data-role="admin" aria-pressed="false"><span class="role-icon" data-icon="settings"></span><span class="role-copy"><span class="role-kicker">FALL 03</span><strong>Administrator&shy;konto</strong><span>Betrieb der Onlinebanking-Plattform</span></span><span class="choice-indicator" aria-hidden="true"></span></button>
+  </div>
+  <p class="role-reset-hint">Beim Kontowechsel beginnt der jeweilige Fall neu.</p>
+</section>
+<section class="playground" id="playground" aria-label="Interaktive Kontosimulation">
+  <aside class="controls panel">
+    <details class="entry-settings"><summary><span class="mini-label">ANGENOMMENER ZUGANG</span><strong id="entrySummary">Gültige Sitzung übernommen</strong><small>Anmeldung und MFA vergleichen</small></summary><div class="entry-body">
+    <fieldset class="entry-options"><legend class="sr-only">Art des gestohlenen Zugangs</legend>
+      <label class="radio-option"><input type="radio" name="entry" value="session" checked><span><strong>Gültige Sitzung übernommen</strong><small>Der Zugang zum jeweiligen System besteht bereits.</small></span></label>
+      <label class="radio-option"><input type="radio" name="entry" value="password"><span><strong>Nur das Passwort bekannt</strong><small>Eine neue Anmeldung wird versucht.</small></span></label>
+    </fieldset>
+    <label class="toggle-row"><span><strong>Zusatzanmeldung aktiv</strong><small>Mehrfaktor-Authentisierung (MFA)</small></span><input id="mfaToggle" type="checkbox" checked role="switch"><span class="switch-track" aria-hidden="true"></span></label>
+    <p class="context-hint" id="mfaHint"></p>
+    </div></details>
+    <div class="control-divider"></div>
+    <h2><span class="step">2</span> Probieren Sie eine Aktion</h2>
+    <p class="small-text">Alle Aktionen sind Simulationen. Es werden keine echten Daten oder Systeme angesprochen.</p>
+    <div class="action-stack">
+      <button class="action-button" data-action="read"><span data-icon="eye"></span><span>Daten ansehen<small>Welche Informationen sind erreichbar?</small></span><span class="action-arrow" aria-hidden="true">→</span></button>
+      <button class="action-button" data-action="draft"><span data-icon="transfer"></span><span>Zahlungsauftrag erfassen<small>Erfassen und Freigeben unterscheiden</small></span><span class="action-arrow" aria-hidden="true">→</span></button>
+      <button class="action-button" data-action="release"><span data-icon="check"></span><span>Zahlung freigeben<small>Reicht der gestohlene Zugang?</small></span><span class="action-arrow" aria-hidden="true">→</span></button>
+      <button class="action-button" data-action="stop"><span data-icon="power"></span><span>Dienst unterbrechen<small>Welche Bankleistungen trifft das?</small></span><span class="action-arrow" aria-hidden="true">→</span></button>
+    </div>
+    <div class="response-box"><span class="mini-label">REAKTION DER ZUSTÄNDIGEN STELLEN</span><button class="button contain-button" id="containBtn"><span data-icon="lock"></span>Zugang sperren &amp; Sitzung beenden</button><button class="button restore-button" id="restoreBtn" hidden><span data-icon="refresh"></span>Prüfen &amp; Dienst wiederherstellen</button><p class="small-text" id="containHint">Die Sperrung beendet im Modell auch die aktive Sitzung.</p></div>
+    <button class="text-button reset-button" id="resetBtn"><span data-icon="refresh"></span>Diesen Fall neu starten</button>
+  </aside>
+  <div class="workspace">
+    <section class="feedback-panel" id="feedbackPanel" aria-live="polite" aria-atomic="true"><div class="feedback-icon" id="feedbackIcon"></div><div><span class="mini-label" id="feedbackLabel">IHR EXPERIMENT</span><h3 id="feedbackTitle"></h3><p id="feedbackText"></p></div></section>
+    <section class="map-panel panel" aria-labelledby="mapHeading">
+      <div class="map-heading"><div><p class="eyebrow small">REICHWEITE DES ZUGANGS</p><h2 id="mapHeading">Welche Bereiche sind erreichbar?</h2></div><span id="accessStatus" class="status-chip active"></span></div>
+      <div class="access-map" id="accessMap"><svg class="connections" id="connections" aria-hidden="true"></svg><div class="identity-bar" id="identityBar"><div class="identity-avatar" id="identityAvatar"></div><div><strong id="identityTitle"></strong><p id="identityScope"></p></div><span id="identityBadge" class="identity-badge"></span></div><div class="resource-grid" id="resourceGrid"></div></div>
+      <div class="legend" aria-label="Legende"><span><i class="legend-dot direct"></i>Direkter Zugriff</span><span><i class="legend-dot guarded"></i>Freigabe erforderlich</span><span><i class="legend-dot review"></i>Indirektes Risiko prüfen</span><span><i class="legend-dot none"></i>Kein direkter Zugriff</span></div>
+      <div class="resource-detail" id="resourceDetail"></div>
+    </section>
+    <section class="services-panel panel" aria-labelledby="servicesHeading"><div class="section-line"><h2 id="servicesHeading">Was bedeutet das für die Bank?</h2><span class="mini-label">VERFÜGBARKEIT</span></div><div class="service-grid" id="serviceGrid"></div><p class="service-note" id="serviceNote"></p><div class="impact-line" id="impactLine"></div></section>
+    <section class="board-panel"><span class="board-icon" data-icon="compass"></span><div><span class="mini-label">FRAGE FÜR DIE ORGANE</span><p id="boardQuestion"></p></div></section>
+  </div>
+</section>
+<section class="end-notes">
+  <details><summary>Annahmen und Grenzen des Modells</summary><div class="details-body"><p>Die drei Konten und ihre Rechte sind <strong>fiktive, klar abgegrenzte Beispiele</strong>. Sie bilden die Architektur oder Berechtigungen unserer Banken nicht ab.</p><ul><li>Ein Kundenkonto ist den eigenen Konten und Unterlagen zugeordnet. Das Mitarbeiterkonto gehört zum Kundenservice und erreicht nur den vorgesehenen Kunden- und Arbeitsbereich.</li><li>Das Administratorkonto betreibt hier die Onlinebanking-Plattform. Es ist kein allmächtiges Konto für die gesamte Bank. Technische Rechte können trotzdem indirekte Zugriffe auf Daten oder Manipulationen ermöglichen. Diese werden als Prüfbedarf gekennzeichnet, nicht als nachgewiesene Datenausleitung.</li><li>Eine übernommene Sitzung wird im jeweiligen Dienst beziehungsweise Arbeitskontext als nutzbar angenommen. Notwendige Zugangswege und Geräteprüfungen sind erfüllt; weitere Schutzmechanismen wie gebundene Sitzungen sind nicht nachgebildet. MFA schützt hier die neue Anmeldung mit dem Passwort. Das Modell zeigt keine Anleitung zur Übernahme einer Sitzung.</li><li>Für Zahlungen fehlen im Szenario die zusätzlich erforderlichen Freigaben. Beim Kunden ist eine gesonderte Auftragsfreigabe vorgesehen, beim Mitarbeiter eine unabhängige zweite Freigabe. Reale Verfahren und mögliche Ausnahmen werden damit nicht vollständig abgebildet.</li><li>Onlinebanking und App hängen im Modell von derselben Plattform ab. Filialbetrieb und Zahlungsabwicklung sind davon technisch getrennt. Eine andere Architektur kann zu anderen Auswirkungen führen.</li><li>Die Reaktionsschaltflächen stehen für die Arbeit der zuständigen Fachstellen. Sperrung und Sitzungsbeendigung werden als erfolgreich angenommen. Wiederherstellung umfasst hier eine vorausgehende Prüfung. Bereits eingesehene Informationen werden durch die Sperrung nicht zurückgeholt.</li></ul><p>Fachliche Grundlagen: <a href="https://pages.nist.gov/800-63-4/sp800-63b/session/" target="_blank" rel="noopener noreferrer">NIST: Sitzungsverwaltung</a> und <a href="https://www.cyber.gc.ca/en/guidance/managing-and-controlling-administrative-privileges-itsap10094" target="_blank" rel="noopener noreferrer">Canadian Centre for Cyber Security: administrative Rechte</a>.</p></div></details>
+  <details><summary>Kurzer Ablauf für die Schulung</summary><div class="details-body"><ol><li><strong>Kundenkonto:</strong> Daten ansehen, Auftrag erfassen und Freigabe versuchen. Was kann trotz fehlender Zahlungsfreigabe bereits passieren?</li><li><strong>Mitarbeiterkonto:</strong> Den gleichen Ablauf wiederholen. Warum ist die Reichweite anders, obwohl weiterhin keine Administrationsrechte bestehen?</li><li><strong>Administratorkonto:</strong> Einen Dienst unterbrechen, dann den Zugang sperren. Weshalb ist damit der Bankbetrieb noch nicht wiederhergestellt?</li><li><strong>Zusatzrunde:</strong> „Nur das Passwort bekannt“ wählen. Die Zusatzanmeldung ein- und ausschalten. Anschließend zur übernommenen Sitzung wechseln.</li></ol><p>Die Teilnehmer können die Fälle einzeln auf dem Smartphone ausprobieren. Die Vortragsansicht vergrößert die Darstellung für den Beamer. Ein Kontowechsel setzt den jeweiligen Fall zurück.</p></div></details>
+</section>
+<footer class="footer"><span>Fiktive Bank · Lernsimulation zu IKT- und Sicherheitsrisiken</span><span>Version 1.0 · Keine Anmeldung erforderlich</span></footer>
+</main>
+<dialog id="compareDialog" class="modal wide-modal" aria-labelledby="compareTitle"><div class="modal-head"><div><p class="eyebrow small">DIE RECHTE ENTSCHEIDEN</p><h2 id="compareTitle">Drei Konten, unterschiedliche Reichweite</h2></div><button class="icon-button" data-close="compareDialog" aria-label="Vergleich schließen">×</button></div><div class="comparison-scroll"><table class="comparison-table"><thead><tr><th>Bereich im Modell</th><th>Kundenkonto</th><th>Mitarbeiterkonto</th><th>Administratorkonto</th></tr></thead><tbody><tr><th>Fachdaten</th><td>Eigene Konten und Unterlagen</td><td>Zugeordnete Kunden und Arbeitsbereiche</td><td>Indirekte technische Zugriffe prüfen</td></tr><tr><th>Zahlungsauftrag</th><td>Für eigene Konten erfassbar</td><td>Im zugeordneten Aufgabenbereich erfassbar</td><td>Kein fachliches Zahlungsrecht</td></tr><tr><th>Zahlungsfreigabe</th><td>Zusätzliche Auftragsfreigabe fehlt</td><td>Unabhängige zweite Freigabe fehlt</td><td>Kein fachliches Freigaberecht; technische Manipulation gesondert prüfen</td></tr><tr><th>Benutzerverwaltung</th><td>Keine fremden Konten oder Rollen</td><td>Keine Verwaltungsrechte</td><td>Technische Konten im eigenen Bereich</td></tr><tr><th>Dienst unterbrechen</th><td>Kein Recht</td><td>Kein Recht</td><td>Onlinebanking-Plattform einschließlich App</td></tr></tbody></table></div><p class="modal-note">Das ist ein Vergleich der drei fiktiven Profile. In der Praxis entscheiden die konkreten Rechte, Zugangswege, technischen Möglichkeiten und unabhängigen Schutzmaßnahmen.</p><button class="button primary" data-close="compareDialog">Zurück zur Spielwiese</button></dialog>
+<dialog id="shareDialog" class="modal" aria-labelledby="shareTitle"><div class="modal-head"><div><p class="eyebrow small">FÜR DIE TEILNEHMER</p><h2 id="shareTitle">Link &amp; QR-Code</h2></div><button class="icon-button" data-close="shareDialog" aria-label="Link und QR-Code schließen">×</button></div><p class="modal-note" id="shareIntro"></p><label class="input-label" for="shareUrl">Adresse der veröffentlichten Spielwiese</label><div class="url-row"><input id="shareUrl" type="url" inputmode="url" spellcheck="false" placeholder="https://…github.io/…/konten.html"><button class="button primary" id="createQrBtn">QR-Code erstellen</button></div><p id="shareError" class="form-error" role="alert"></p><div class="qr-result" id="qrResult" hidden><div id="qrMount" class="qr-mount"></div><p class="qr-caption">Ein Konto. Welche Folgen?</p><p id="qrUrlLabel" class="qr-url"></p><div class="download-actions"><button class="button primary" id="downloadQrBtn"><span data-icon="download"></span>QR-Code als PNG</button><button class="button subtle" id="copyLinkBtn"><span data-icon="copy"></span>Link kopieren</button></div><p id="shareStatus" class="small-text" role="status"></p></div><details class="github-instructions"><summary>So kommt die Datei auf GitHub</summary><ol><li>Diese Datei als <strong>konten.html</strong> auf dem Computer speichern.</li><li>Im bestehenden Repository <strong>Add file → Upload files</strong> wählen, die Datei hochladen und mit <strong>Commit changes</strong> speichern. Den für Pages verwendeten Ordner nutzen.</li><li>Unter <strong>Settings → Pages</strong> die Veröffentlichung prüfen. Bei „Deploy from a branch“ müssen der passende Branch, zum Beispiel <strong>main</strong>, und der richtige Ordner gewählt sein.</li><li>Die veröffentlichte Seitenadresse öffnen und <strong>konten.html</strong> an den Pfad anhängen. Bei einer Projektseite lautet das Schema <code>https://NAME.github.io/REPOSITORY/konten.html</code>.</li><li>Auf der veröffentlichten Spielwiese <strong>Link &amp; QR-Code</strong> öffnen. Die Adresse wird übernommen. Den QR-Code als PNG herunterladen und in PowerPoint einfügen.</li></ol><p class="small-text">Falls GitHub Pages bereits eingerichtet ist, genügt das Hochladen in den veröffentlichten Ordner. Die Oberfläche kann je nach Repository abweichen.</p><p><a href="https://docs.github.com/en/repositories/working-with-files/managing-files/adding-a-file-to-a-repository" target="_blank" rel="noopener noreferrer">GitHub: Datei hochladen</a> · <a href="https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site" target="_blank" rel="noopener noreferrer">GitHub: Pages konfigurieren</a></p></details></dialog>
+<script>/*
+ * QR Code generator library (compiled from TypeScript)
+ *
+ * Copyright (c) Project Nayuki. (MIT License)
+ * https://www.nayuki.io/page/qr-code-generator-library
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of
+ * this software and associated documentation files (the "Software"), to deal in
+ * the Software without restriction, including without limitation the rights to
+ * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+ * the Software, and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions:
+ * - The above copyright notice and this permission notice shall be included in
+ *   all copies or substantial portions of the Software.
+ * - The Software is provided "as is", without warranty of any kind, express or
+ *   implied, including but not limited to the warranties of merchantability,
+ *   fitness for a particular purpose and noninfringement. In no event shall the
+ *   authors or copyright holders be liable for any claim, damages or other
+ *   liability, whether in an action of contract, tort or otherwise, arising from,
+ *   out of or in connection with the Software or the use or other dealings in the
+ *   Software.
+ */
+"use strict";
+var qrcodegen;
+(function (qrcodegen) {
+    /*---- QR Code symbol class ----*/
+    /*
+     * A QR Code symbol, which is a type of two-dimension barcode.
+     * Invented by Denso Wave and described in the ISO/IEC 18004 standard.
+     * Instances of this class represent an immutable square grid of dark and light cells.
+     * The class provides static factory functions to create a QR Code from text or binary data.
+     * The class covers the QR Code Model 2 specification, supporting all versions (sizes)
+     * from 1 to 40, all 4 error correction levels, and 4 character encoding modes.
+     *
+     * Ways to create a QR Code object:
+     * - High level: Take the payload data and call QrCode.encodeText() or QrCode.encodeBinary().
+     * - Mid level: Custom-make the list of segments and call QrCode.encodeSegments().
+     * - Low level: Custom-make the array of data codeword bytes (including
+     *   segment headers and final padding, excluding error correction codewords),
+     *   supply the appropriate version number, and call the QrCode() constructor.
+     * (Note that all ways require supplying the desired error correction level.)
+     */
+    class QrCode {
+        /*-- Constructor (low level) and fields --*/
+        // Creates a new QR Code with the given version number,
+        // error correction level, data codeword bytes, and mask number.
+        // This is a low-level API that most users should not use directly.
+        // A mid-level API is the encodeSegments() function.
+        constructor(
+        // The version number of this QR Code, which is between 1 and 40 (inclusive).
+        // This determines the size of this barcode.
+        version, 
+        // The error correction level used in this QR Code.
+        errorCorrectionLevel, dataCodewords, msk) {
+            this.version = version;
+            this.errorCorrectionLevel = errorCorrectionLevel;
+            // The modules of this QR Code (false = light, true = dark).
+            // Immutable after constructor finishes. Accessed through getModule().
+            this.modules = [];
+            // Indicates function modules that are not subjected to masking. Discarded when constructor finishes.
+            this.isFunction = [];
+            // Check scalar arguments
+            if (version < QrCode.MIN_VERSION || version > QrCode.MAX_VERSION)
+                throw new RangeError("Version value out of range");
+            if (msk < -1 || msk > 7)
+                throw new RangeError("Mask value out of range");
+            this.size = version * 4 + 17;
+            // Initialize both grids to be size*size arrays of Boolean false
+            let row = [];
+            for (let i = 0; i < this.size; i++)
+                row.push(false);
+            for (let i = 0; i < this.size; i++) {
+                this.modules.push(row.slice()); // Initially all light
+                this.isFunction.push(row.slice());
+            }
+            // Compute ECC, draw modules
+            this.drawFunctionPatterns();
+            const allCodewords = this.addEccAndInterleave(dataCodewords);
+            this.drawCodewords(allCodewords);
+            // Do masking
+            if (msk == -1) { // Automatically choose best mask
+                let minPenalty = 1000000000;
+                for (let i = 0; i < 8; i++) {
+                    this.applyMask(i);
+                    this.drawFormatBits(i);
+                    const penalty = this.getPenaltyScore();
+                    if (penalty < minPenalty) {
+                        msk = i;
+                        minPenalty = penalty;
+                    }
+                    this.applyMask(i); // Undoes the mask due to XOR
+                }
+            }
+            assert(0 <= msk && msk <= 7);
+            this.mask = msk;
+            this.applyMask(msk); // Apply the final choice of mask
+            this.drawFormatBits(msk); // Overwrite old format bits
+            this.isFunction = [];
+        }
+        /*-- Static factory functions (high level) --*/
+        // Returns a QR Code representing the given Unicode text string at the given error correction level.
+        // As a conservative upper bound, this function is guaranteed to succeed for strings that have 738 or fewer
+        // Unicode code points (not UTF-16 code units) if the low error correction level is used. The smallest possible
+        // QR Code version is automatically chosen for the output. The ECC level of the result may be higher than the
+        // ecl argument if it can be done without increasing the version.
+        static encodeText(text, ecl) {
+            const segs = qrcodegen.QrSegment.makeSegments(text);
+            return QrCode.encodeSegments(segs, ecl);
+        }
+        // Returns a QR Code representing the given binary data at the given error correction level.
+        // This function always encodes using the binary segment mode, not any text mode. The maximum number of
+        // bytes allowed is 2953. The smallest possible QR Code version is automatically chosen for the output.
+        // The ECC level of the result may be higher than the ecl argument if it can be done without increasing the version.
+        static encodeBinary(data, ecl) {
+            const seg = qrcodegen.QrSegment.makeBytes(data);
+            return QrCode.encodeSegments([seg], ecl);
+        }
+        /*-- Static factory functions (mid level) --*/
+        // Returns a QR Code representing the given segments with the given encoding parameters.
+        // The smallest possible QR Code version within the given range is automatically
+        // chosen for the output. Iff boostEcl is true, then the ECC level of the result
+        // may be higher than the ecl argument if it can be done without increasing the
+        // version. The mask number is either between 0 to 7 (inclusive) to force that
+        // mask, or -1 to automatically choose an appropriate mask (which may be slow).
+        // This function allows the user to create a custom sequence of segments that switches
+        // between modes (such as alphanumeric and byte) to encode text in less space.
+        // This is a mid-level API; the high-level API is encodeText() and encodeBinary().
+        static encodeSegments(segs, ecl, minVersion = 1, maxVersion = 40, mask = -1, boostEcl = true) {
+            if (!(QrCode.MIN_VERSION <= minVersion && minVersion <= maxVersion && maxVersion <= QrCode.MAX_VERSION)
+                || mask < -1 || mask > 7)
+                throw new RangeError("Invalid value");
+            // Find the minimal version number to use
+            let version;
+            let dataUsedBits;
+            for (version = minVersion;; version++) {
+                const dataCapacityBits = QrCode.getNumDataCodewords(version, ecl) * 8; // Number of data bits available
+                const usedBits = QrSegment.getTotalBits(segs, version);
+                if (usedBits <= dataCapacityBits) {
+                    dataUsedBits = usedBits;
+                    break; // This version number is found to be suitable
+                }
+                if (version >= maxVersion) // All versions in the range could not fit the given data
+                    throw new RangeError("Data too long");
+            }
+            // Increase the error correction level while the data still fits in the current version number
+            for (const newEcl of [QrCode.Ecc.MEDIUM, QrCode.Ecc.QUARTILE, QrCode.Ecc.HIGH]) { // From low to high
+                if (boostEcl && dataUsedBits <= QrCode.getNumDataCodewords(version, newEcl) * 8)
+                    ecl = newEcl;
+            }
+            // Concatenate all segments to create the data bit string
+            let bb = [];
+            for (const seg of segs) {
+                appendBits(seg.mode.modeBits, 4, bb);
+                appendBits(seg.numChars, seg.mode.numCharCountBits(version), bb);
+                for (const b of seg.getData())
+                    bb.push(b);
+            }
+            assert(bb.length == dataUsedBits);
+            // Add terminator and pad up to a byte if applicable
+            const dataCapacityBits = QrCode.getNumDataCodewords(version, ecl) * 8;
+            assert(bb.length <= dataCapacityBits);
+            appendBits(0, Math.min(4, dataCapacityBits - bb.length), bb);
+            appendBits(0, (8 - bb.length % 8) % 8, bb);
+            assert(bb.length % 8 == 0);
+            // Pad with alternating bytes until data capacity is reached
+            for (let padByte = 0xEC; bb.length < dataCapacityBits; padByte ^= 0xEC ^ 0x11)
+                appendBits(padByte, 8, bb);
+            // Pack bits into bytes in big endian
+            let dataCodewords = [];
+            while (dataCodewords.length * 8 < bb.length)
+                dataCodewords.push(0);
+            bb.forEach((b, i) => dataCodewords[i >>> 3] |= b << (7 - (i & 7)));
+            // Create the QR Code object
+            return new QrCode(version, ecl, dataCodewords, mask);
+        }
+        /*-- Accessor methods --*/
+        // Returns the color of the module (pixel) at the given coordinates, which is false
+        // for light or true for dark. The top left corner has the coordinates (x=0, y=0).
+        // If the given coordinates are out of bounds, then false (light) is returned.
+        getModule(x, y) {
+            return 0 <= x && x < this.size && 0 <= y && y < this.size && this.modules[y][x];
+        }
+        /*-- Private helper methods for constructor: Drawing function modules --*/
+        // Reads this object's version field, and draws and marks all function modules.
+        drawFunctionPatterns() {
+            // Draw horizontal and vertical timing patterns
+            for (let i = 0; i < this.size; i++) {
+                this.setFunctionModule(6, i, i % 2 == 0);
+                this.setFunctionModule(i, 6, i % 2 == 0);
+            }
+            // Draw 3 finder patterns (all corners except bottom right; overwrites some timing modules)
+            this.drawFinderPattern(3, 3);
+            this.drawFinderPattern(this.size - 4, 3);
+            this.drawFinderPattern(3, this.size - 4);
+            // Draw numerous alignment patterns
+            const alignPatPos = this.getAlignmentPatternPositions();
+            const numAlign = alignPatPos.length;
+            for (let i = 0; i < numAlign; i++) {
+                for (let j = 0; j < numAlign; j++) {
+                    // Don't draw on the three finder corners
+                    if (!(i == 0 && j == 0 || i == 0 && j == numAlign - 1 || i == numAlign - 1 && j == 0))
+                        this.drawAlignmentPattern(alignPatPos[i], alignPatPos[j]);
+                }
+            }
+            // Draw configuration data
+            this.drawFormatBits(0); // Dummy mask value; overwritten later in the constructor
+            this.drawVersion();
+        }
+        // Draws two copies of the format bits (with its own error correction code)
+        // based on the given mask and this object's error correction level field.
+        drawFormatBits(mask) {
+            // Calculate error correction code and pack bits
+            const data = this.errorCorrectionLevel.formatBits << 3 | mask; // errCorrLvl is uint2, mask is uint3
+            let rem = data;
+            for (let i = 0; i < 10; i++)
+                rem = (rem << 1) ^ ((rem >>> 9) * 0x537);
+            const bits = (data << 10 | rem) ^ 0x5412; // uint15
+            assert(bits >>> 15 == 0);
+            // Draw first copy
+            for (let i = 0; i <= 5; i++)
+                this.setFunctionModule(8, i, getBit(bits, i));
+            this.setFunctionModule(8, 7, getBit(bits, 6));
+            this.setFunctionModule(8, 8, getBit(bits, 7));
+            this.setFunctionModule(7, 8, getBit(bits, 8));
+            for (let i = 9; i < 15; i++)
+                this.setFunctionModule(14 - i, 8, getBit(bits, i));
+            // Draw second copy
+            for (let i = 0; i < 8; i++)
+                this.setFunctionModule(this.size - 1 - i, 8, getBit(bits, i));
+            for (let i = 8; i < 15; i++)
+                this.setFunctionModule(8, this.size - 15 + i, getBit(bits, i));
+            this.setFunctionModule(8, this.size - 8, true); // Always dark
+        }
+        // Draws two copies of the version bits (with its own error correction code),
+        // based on this object's version field, iff 7 <= version <= 40.
+        drawVersion() {
+            if (this.version < 7)
+                return;
+            // Calculate error correction code and pack bits
+            let rem = this.version; // version is uint6, in the range [7, 40]
+            for (let i = 0; i < 12; i++)
+                rem = (rem << 1) ^ ((rem >>> 11) * 0x1F25);
+            const bits = this.version << 12 | rem; // uint18
+            assert(bits >>> 18 == 0);
+            // Draw two copies
+            for (let i = 0; i < 18; i++) {
+                const color = getBit(bits, i);
+                const a = this.size - 11 + i % 3;
+                const b = Math.floor(i / 3);
+                this.setFunctionModule(a, b, color);
+                this.setFunctionModule(b, a, color);
+            }
+        }
+        // Draws a 9*9 finder pattern including the border separator,
+        // with the center module at (x, y). Modules can be out of bounds.
+        drawFinderPattern(x, y) {
+            for (let dy = -4; dy <= 4; dy++) {
+                for (let dx = -4; dx <= 4; dx++) {
+                    const dist = Math.max(Math.abs(dx), Math.abs(dy)); // Chebyshev/infinity norm
+                    const xx = x + dx;
+                    const yy = y + dy;
+                    if (0 <= xx && xx < this.size && 0 <= yy && yy < this.size)
+                        this.setFunctionModule(xx, yy, dist != 2 && dist != 4);
+                }
+            }
+        }
+        // Draws a 5*5 alignment pattern, with the center module
+        // at (x, y). All modules must be in bounds.
+        drawAlignmentPattern(x, y) {
+            for (let dy = -2; dy <= 2; dy++) {
+                for (let dx = -2; dx <= 2; dx++)
+                    this.setFunctionModule(x + dx, y + dy, Math.max(Math.abs(dx), Math.abs(dy)) != 1);
+            }
+        }
+        // Sets the color of a module and marks it as a function module.
+        // Only used by the constructor. Coordinates must be in bounds.
+        setFunctionModule(x, y, isDark) {
+            this.modules[y][x] = isDark;
+            this.isFunction[y][x] = true;
+        }
+        /*-- Private helper methods for constructor: Codewords and masking --*/
+        // Returns a new byte string representing the given data with the appropriate error correction
+        // codewords appended to it, based on this object's version and error correction level.
+        addEccAndInterleave(data) {
+            const ver = this.version;
+            const ecl = this.errorCorrectionLevel;
+            if (data.length != QrCode.getNumDataCodewords(ver, ecl))
+                throw new RangeError("Invalid argument");
+            // Calculate parameter numbers
+            const numBlocks = QrCode.NUM_ERROR_CORRECTION_BLOCKS[ecl.ordinal][ver];
+            const blockEccLen = QrCode.ECC_CODEWORDS_PER_BLOCK[ecl.ordinal][ver];
+            const rawCodewords = Math.floor(QrCode.getNumRawDataModules(ver) / 8);
+            const numShortBlocks = numBlocks - rawCodewords % numBlocks;
+            const shortBlockLen = Math.floor(rawCodewords / numBlocks);
+            // Split data into blocks and append ECC to each block
+            let blocks = [];
+            const rsDiv = QrCode.reedSolomonComputeDivisor(blockEccLen);
+            for (let i = 0, k = 0; i < numBlocks; i++) {
+                let dat = data.slice(k, k + shortBlockLen - blockEccLen + (i < numShortBlocks ? 0 : 1));
+                k += dat.length;
+                const ecc = QrCode.reedSolomonComputeRemainder(dat, rsDiv);
+                if (i < numShortBlocks)
+                    dat.push(0);
+                blocks.push(dat.concat(ecc));
+            }
+            // Interleave (not concatenate) the bytes from every block into a single sequence
+            let result = [];
+            for (let i = 0; i < blocks[0].length; i++) {
+                blocks.forEach((block, j) => {
+                    // Skip the padding byte in short blocks
+                    if (i != shortBlockLen - blockEccLen || j >= numShortBlocks)
+                        result.push(block[i]);
+                });
+            }
+            assert(result.length == rawCodewords);
+            return result;
+        }
+        // Draws the given sequence of 8-bit codewords (data and error correction) onto the entire
+        // data area of this QR Code. Function modules need to be marked off before this is called.
+        drawCodewords(data) {
+            if (data.length != Math.floor(QrCode.getNumRawDataModules(this.version) / 8))
+                throw new RangeError("Invalid argument");
+            let i = 0; // Bit index into the data
+            // Do the funny zigzag scan
+            for (let right = this.size - 1; right >= 1; right -= 2) { // Index of right column in each column pair
+                if (right == 6)
+                    right = 5;
+                for (let vert = 0; vert < this.size; vert++) { // Vertical counter
+                    for (let j = 0; j < 2; j++) {
+                        const x = right - j; // Actual x coordinate
+                        const upward = ((right + 1) & 2) == 0;
+                        const y = upward ? this.size - 1 - vert : vert; // Actual y coordinate
+                        if (!this.isFunction[y][x] && i < data.length * 8) {
+                            this.modules[y][x] = getBit(data[i >>> 3], 7 - (i & 7));
+                            i++;
+                        }
+                        // If this QR Code has any remainder bits (0 to 7), they were assigned as
+                        // 0/false/light by the constructor and are left unchanged by this method
+                    }
+                }
+            }
+            assert(i == data.length * 8);
+        }
+        // XORs the codeword modules in this QR Code with the given mask pattern.
+        // The function modules must be marked and the codeword bits must be drawn
+        // before masking. Due to the arithmetic of XOR, calling applyMask() with
+        // the same mask value a second time will undo the mask. A final well-formed
+        // QR Code needs exactly one (not zero, two, etc.) mask applied.
+        applyMask(mask) {
+            if (mask < 0 || mask > 7)
+                throw new RangeError("Mask value out of range");
+            for (let y = 0; y < this.size; y++) {
+                for (let x = 0; x < this.size; x++) {
+                    let invert;
+                    switch (mask) {
+                        case 0:
+                            invert = (x + y) % 2 == 0;
+                            break;
+                        case 1:
+                            invert = y % 2 == 0;
+                            break;
+                        case 2:
+                            invert = x % 3 == 0;
+                            break;
+                        case 3:
+                            invert = (x + y) % 3 == 0;
+                            break;
+                        case 4:
+                            invert = (Math.floor(x / 3) + Math.floor(y / 2)) % 2 == 0;
+                            break;
+                        case 5:
+                            invert = x * y % 2 + x * y % 3 == 0;
+                            break;
+                        case 6:
+                            invert = (x * y % 2 + x * y % 3) % 2 == 0;
+                            break;
+                        case 7:
+                            invert = ((x + y) % 2 + x * y % 3) % 2 == 0;
+                            break;
+                        default: throw new Error("Unreachable");
+                    }
+                    if (!this.isFunction[y][x] && invert)
+                        this.modules[y][x] = !this.modules[y][x];
+                }
+            }
+        }
+        // Calculates and returns the penalty score based on state of this QR Code's current modules.
+        // This is used by the automatic mask choice algorithm to find the mask pattern that yields the lowest score.
+        getPenaltyScore() {
+            let result = 0;
+            // Adjacent modules in row having same color, and finder-like patterns
+            for (let y = 0; y < this.size; y++) {
+                let runColor = false;
+                let runX = 0;
+                let runHistory = [0, 0, 0, 0, 0, 0, 0];
+                for (let x = 0; x < this.size; x++) {
+                    if (this.modules[y][x] == runColor) {
+                        runX++;
+                        if (runX == 5)
+                            result += QrCode.PENALTY_N1;
+                        else if (runX > 5)
+                            result++;
+                    }
+                    else {
+                        this.finderPenaltyAddHistory(runX, runHistory);
+                        if (!runColor)
+                            result += this.finderPenaltyCountPatterns(runHistory) * QrCode.PENALTY_N3;
+                        runColor = this.modules[y][x];
+                        runX = 1;
+                    }
+                }
+                result += this.finderPenaltyTerminateAndCount(runColor, runX, runHistory) * QrCode.PENALTY_N3;
+            }
+            // Adjacent modules in column having same color, and finder-like patterns
+            for (let x = 0; x < this.size; x++) {
+                let runColor = false;
+                let runY = 0;
+                let runHistory = [0, 0, 0, 0, 0, 0, 0];
+                for (let y = 0; y < this.size; y++) {
+                    if (this.modules[y][x] == runColor) {
+                        runY++;
+                        if (runY == 5)
+                            result += QrCode.PENALTY_N1;
+                        else if (runY > 5)
+                            result++;
+                    }
+                    else {
+                        this.finderPenaltyAddHistory(runY, runHistory);
+                        if (!runColor)
+                            result += this.finderPenaltyCountPatterns(runHistory) * QrCode.PENALTY_N3;
+                        runColor = this.modules[y][x];
+                        runY = 1;
+                    }
+                }
+                result += this.finderPenaltyTerminateAndCount(runColor, runY, runHistory) * QrCode.PENALTY_N3;
+            }
+            // 2*2 blocks of modules having same color
+            for (let y = 0; y < this.size - 1; y++) {
+                for (let x = 0; x < this.size - 1; x++) {
+                    const color = this.modules[y][x];
+                    if (color == this.modules[y][x + 1] &&
+                        color == this.modules[y + 1][x] &&
+                        color == this.modules[y + 1][x + 1])
+                        result += QrCode.PENALTY_N2;
+                }
+            }
+            // Balance of dark and light modules
+            let dark = 0;
+            for (const row of this.modules)
+                dark = row.reduce((sum, color) => sum + (color ? 1 : 0), dark);
+            const total = this.size * this.size; // Note that size is odd, so dark/total != 1/2
+            // Compute the smallest integer k >= 0 such that (45-5k)% <= dark/total <= (55+5k)%
+            const k = Math.ceil(Math.abs(dark * 20 - total * 10) / total) - 1;
+            assert(0 <= k && k <= 9);
+            result += k * QrCode.PENALTY_N4;
+            assert(0 <= result && result <= 2568888); // Non-tight upper bound based on default values of PENALTY_N1, ..., N4
+            return result;
+        }
+        /*-- Private helper functions --*/
+        // Returns an ascending list of positions of alignment patterns for this version number.
+        // Each position is in the range [0,177), and are used on both the x and y axes.
+        // This could be implemented as lookup table of 40 variable-length lists of integers.
+        getAlignmentPatternPositions() {
+            if (this.version == 1)
+                return [];
+            else {
+                const numAlign = Math.floor(this.version / 7) + 2;
+                const step = (this.version == 32) ? 26 :
+                    Math.ceil((this.version * 4 + 4) / (numAlign * 2 - 2)) * 2;
+                let result = [6];
+                for (let pos = this.size - 7; result.length < numAlign; pos -= step)
+                    result.splice(1, 0, pos);
+                return result;
+            }
+        }
+        // Returns the number of data bits that can be stored in a QR Code of the given version number, after
+        // all function modules are excluded. This includes remainder bits, so it might not be a multiple of 8.
+        // The result is in the range [208, 29648]. This could be implemented as a 40-entry lookup table.
+        static getNumRawDataModules(ver) {
+            if (ver < QrCode.MIN_VERSION || ver > QrCode.MAX_VERSION)
+                throw new RangeError("Version number out of range");
+            let result = (16 * ver + 128) * ver + 64;
+            if (ver >= 2) {
+                const numAlign = Math.floor(ver / 7) + 2;
+                result -= (25 * numAlign - 10) * numAlign - 55;
+                if (ver >= 7)
+                    result -= 36;
+            }
+            assert(208 <= result && result <= 29648);
+            return result;
+        }
+        // Returns the number of 8-bit data (i.e. not error correction) codewords contained in any
+        // QR Code of the given version number and error correction level, with remainder bits discarded.
+        // This stateless pure function could be implemented as a (40*4)-cell lookup table.
+        static getNumDataCodewords(ver, ecl) {
+            return Math.floor(QrCode.getNumRawDataModules(ver) / 8) -
+                QrCode.ECC_CODEWORDS_PER_BLOCK[ecl.ordinal][ver] *
+                    QrCode.NUM_ERROR_CORRECTION_BLOCKS[ecl.ordinal][ver];
+        }
+        // Returns a Reed-Solomon ECC generator polynomial for the given degree. This could be
+        // implemented as a lookup table over all possible parameter values, instead of as an algorithm.
+        static reedSolomonComputeDivisor(degree) {
+            if (degree < 1 || degree > 255)
+                throw new RangeError("Degree out of range");
+            // Polynomial coefficients are stored from highest to lowest power, excluding the leading term which is always 1.
+            // For example the polynomial x^3 + 255x^2 + 8x + 93 is stored as the uint8 array [255, 8, 93].
+            let result = [];
+            for (let i = 0; i < degree - 1; i++)
+                result.push(0);
+            result.push(1); // Start off with the monomial x^0
+            // Compute the product polynomial (x - r^0) * (x - r^1) * (x - r^2) * ... * (x - r^{degree-1}),
+            // and drop the highest monomial term which is always 1x^degree.
+            // Note that r = 0x02, which is a generator element of this field GF(2^8/0x11D).
+            let root = 1;
+            for (let i = 0; i < degree; i++) {
+                // Multiply the current product by (x - r^i)
+                for (let j = 0; j < result.length; j++) {
+                    result[j] = QrCode.reedSolomonMultiply(result[j], root);
+                    if (j + 1 < result.length)
+                        result[j] ^= result[j + 1];
+                }
+                root = QrCode.reedSolomonMultiply(root, 0x02);
+            }
+            return result;
+        }
+        // Returns the Reed-Solomon error correction codeword for the given data and divisor polynomials.
+        static reedSolomonComputeRemainder(data, divisor) {
+            let result = divisor.map(_ => 0);
+            for (const b of data) { // Polynomial division
+                const factor = b ^ result.shift();
+                result.push(0);
+                divisor.forEach((coef, i) => result[i] ^= QrCode.reedSolomonMultiply(coef, factor));
+            }
+            return result;
+        }
+        // Returns the product of the two given field elements modulo GF(2^8/0x11D). The arguments and result
+        // are unsigned 8-bit integers. This could be implemented as a lookup table of 256*256 entries of uint8.
+        static reedSolomonMultiply(x, y) {
+            if (x >>> 8 != 0 || y >>> 8 != 0)
+                throw new RangeError("Byte out of range");
+            // Russian peasant multiplication
+            let z = 0;
+            for (let i = 7; i >= 0; i--) {
+                z = (z << 1) ^ ((z >>> 7) * 0x11D);
+                z ^= ((y >>> i) & 1) * x;
+            }
+            assert(z >>> 8 == 0);
+            return z;
+        }
+        // Can only be called immediately after a light run is added, and
+        // returns either 0, 1, or 2. A helper function for getPenaltyScore().
+        finderPenaltyCountPatterns(runHistory) {
+            const n = runHistory[1];
+            assert(n <= this.size * 3);
+            const core = n > 0 && runHistory[2] == n && runHistory[3] == n * 3 && runHistory[4] == n && runHistory[5] == n;
+            return (core && runHistory[0] >= n * 4 && runHistory[6] >= n ? 1 : 0)
+                + (core && runHistory[6] >= n * 4 && runHistory[0] >= n ? 1 : 0);
+        }
+        // Must be called at the end of a line (row or column) of modules. A helper function for getPenaltyScore().
+        finderPenaltyTerminateAndCount(currentRunColor, currentRunLength, runHistory) {
+            if (currentRunColor) { // Terminate dark run
+                this.finderPenaltyAddHistory(currentRunLength, runHistory);
+                currentRunLength = 0;
+            }
+            currentRunLength += this.size; // Add light border to final run
+            this.finderPenaltyAddHistory(currentRunLength, runHistory);
+            return this.finderPenaltyCountPatterns(runHistory);
+        }
+        // Pushes the given value to the front and drops the last value. A helper function for getPenaltyScore().
+        finderPenaltyAddHistory(currentRunLength, runHistory) {
+            if (runHistory[0] == 0)
+                currentRunLength += this.size; // Add light border to initial run
+            runHistory.pop();
+            runHistory.unshift(currentRunLength);
+        }
+    }
+    /*-- Constants and tables --*/
+    // The minimum version number supported in the QR Code Model 2 standard.
+    QrCode.MIN_VERSION = 1;
+    // The maximum version number supported in the QR Code Model 2 standard.
+    QrCode.MAX_VERSION = 40;
+    // For use in getPenaltyScore(), when evaluating which mask is best.
+    QrCode.PENALTY_N1 = 3;
+    QrCode.PENALTY_N2 = 3;
+    QrCode.PENALTY_N3 = 40;
+    QrCode.PENALTY_N4 = 10;
+    QrCode.ECC_CODEWORDS_PER_BLOCK = [
+        // Version: (note that index 0 is for padding, and is set to an illegal value)
+        //0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40    Error correction level
+        [-1, 7, 10, 15, 20, 26, 18, 20, 24, 30, 18, 20, 24, 26, 30, 22, 24, 28, 30, 28, 28, 28, 28, 30, 30, 26, 28, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30],
+        [-1, 10, 16, 26, 18, 24, 16, 18, 22, 22, 26, 30, 22, 22, 24, 24, 28, 28, 26, 26, 26, 26, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28],
+        [-1, 13, 22, 18, 26, 18, 24, 18, 22, 20, 24, 28, 26, 24, 20, 30, 24, 28, 28, 26, 30, 28, 30, 30, 30, 30, 28, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30],
+        [-1, 17, 28, 22, 16, 22, 28, 26, 26, 24, 28, 24, 28, 22, 24, 24, 30, 28, 28, 26, 28, 30, 24, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30], // High
+    ];
+    QrCode.NUM_ERROR_CORRECTION_BLOCKS = [
+        // Version: (note that index 0 is for padding, and is set to an illegal value)
+        //0, 1, 2, 3, 4, 5, 6, 7, 8, 9,10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40    Error correction level
+        [-1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 4, 4, 4, 4, 4, 6, 6, 6, 6, 7, 8, 8, 9, 9, 10, 12, 12, 12, 13, 14, 15, 16, 17, 18, 19, 19, 20, 21, 22, 24, 25],
+        [-1, 1, 1, 1, 2, 2, 4, 4, 4, 5, 5, 5, 8, 9, 9, 10, 10, 11, 13, 14, 16, 17, 17, 18, 20, 21, 23, 25, 26, 28, 29, 31, 33, 35, 37, 38, 40, 43, 45, 47, 49],
+        [-1, 1, 1, 2, 2, 4, 4, 6, 6, 8, 8, 8, 10, 12, 16, 12, 17, 16, 18, 21, 20, 23, 23, 25, 27, 29, 34, 34, 35, 38, 40, 43, 45, 48, 51, 53, 56, 59, 62, 65, 68],
+        [-1, 1, 1, 2, 4, 4, 4, 5, 6, 8, 8, 11, 11, 16, 16, 18, 16, 19, 21, 25, 25, 25, 34, 30, 32, 35, 37, 40, 42, 45, 48, 51, 54, 57, 60, 63, 66, 70, 74, 77, 81], // High
+    ];
+    qrcodegen.QrCode = QrCode;
+    // Appends the given number of low-order bits of the given value
+    // to the given buffer. Requires 0 <= len <= 31 and 0 <= val < 2^len.
+    function appendBits(val, len, bb) {
+        if (len < 0 || len > 31 || val >>> len != 0)
+            throw new RangeError("Value out of range");
+        for (let i = len - 1; i >= 0; i--) // Append bit by bit
+            bb.push((val >>> i) & 1);
+    }
+    // Returns true iff the i'th bit of x is set to 1.
+    function getBit(x, i) {
+        return ((x >>> i) & 1) != 0;
+    }
+    // Throws an exception if the given condition is false.
+    function assert(cond) {
+        if (!cond)
+            throw new Error("Assertion error");
+    }
+    /*---- Data segment class ----*/
+    /*
+     * A segment of character/binary/control data in a QR Code symbol.
+     * Instances of this class are immutable.
+     * The mid-level way to create a segment is to take the payload data
+     * and call a static factory function such as QrSegment.makeNumeric().
+     * The low-level way to create a segment is to custom-make the bit buffer
+     * and call the QrSegment() constructor with appropriate values.
+     * This segment class imposes no length restrictions, but QR Codes have restrictions.
+     * Even in the most favorable conditions, a QR Code can only hold 7089 characters of data.
+     * Any segment longer than this is meaningless for the purpose of generating QR Codes.
+     */
+    class QrSegment {
+        /*-- Constructor (low level) and fields --*/
+        // Creates a new QR Code segment with the given attributes and data.
+        // The character count (numChars) must agree with the mode and the bit buffer length,
+        // but the constraint isn't checked. The given bit buffer is cloned and stored.
+        constructor(
+        // The mode indicator of this segment.
+        mode, 
+        // The length of this segment's unencoded data. Measured in characters for
+        // numeric/alphanumeric/kanji mode, bytes for byte mode, and 0 for ECI mode.
+        // Always zero or positive. Not the same as the data's bit length.
+        numChars, 
+        // The data bits of this segment. Accessed through getData().
+        bitData) {
+            this.mode = mode;
+            this.numChars = numChars;
+            this.bitData = bitData;
+            if (numChars < 0)
+                throw new RangeError("Invalid argument");
+            this.bitData = bitData.slice(); // Make defensive copy
+        }
+        /*-- Static factory functions (mid level) --*/
+        // Returns a segment representing the given binary data encoded in
+        // byte mode. All input byte arrays are acceptable. Any text string
+        // can be converted to UTF-8 bytes and encoded as a byte mode segment.
+        static makeBytes(data) {
+            let bb = [];
+            for (const b of data)
+                appendBits(b, 8, bb);
+            return new QrSegment(QrSegment.Mode.BYTE, data.length, bb);
+        }
+        // Returns a segment representing the given string of decimal digits encoded in numeric mode.
+        static makeNumeric(digits) {
+            if (!QrSegment.isNumeric(digits))
+                throw new RangeError("String contains non-numeric characters");
+            let bb = [];
+            for (let i = 0; i < digits.length;) { // Consume up to 3 digits per iteration
+                const n = Math.min(digits.length - i, 3);
+                appendBits(parseInt(digits.substring(i, i + n), 10), n * 3 + 1, bb);
+                i += n;
+            }
+            return new QrSegment(QrSegment.Mode.NUMERIC, digits.length, bb);
+        }
+        // Returns a segment representing the given text string encoded in alphanumeric mode.
+        // The characters allowed are: 0 to 9, A to Z (uppercase only), space,
+        // dollar, percent, asterisk, plus, hyphen, period, slash, colon.
+        static makeAlphanumeric(text) {
+            if (!QrSegment.isAlphanumeric(text))
+                throw new RangeError("String contains unencodable characters in alphanumeric mode");
+            let bb = [];
+            let i;
+            for (i = 0; i + 2 <= text.length; i += 2) { // Process groups of 2
+                let temp = QrSegment.ALPHANUMERIC_CHARSET.indexOf(text.charAt(i)) * 45;
+                temp += QrSegment.ALPHANUMERIC_CHARSET.indexOf(text.charAt(i + 1));
+                appendBits(temp, 11, bb);
+            }
+            if (i < text.length) // 1 character remaining
+                appendBits(QrSegment.ALPHANUMERIC_CHARSET.indexOf(text.charAt(i)), 6, bb);
+            return new QrSegment(QrSegment.Mode.ALPHANUMERIC, text.length, bb);
+        }
+        // Returns a new mutable list of zero or more segments to represent the given Unicode text string.
+        // The result may use various segment modes and switch modes to optimize the length of the bit stream.
+        static makeSegments(text) {
+            // Select the most efficient segment encoding automatically
+            if (text == "")
+                return [];
+            else if (QrSegment.isNumeric(text))
+                return [QrSegment.makeNumeric(text)];
+            else if (QrSegment.isAlphanumeric(text))
+                return [QrSegment.makeAlphanumeric(text)];
+            else
+                return [QrSegment.makeBytes(QrSegment.toUtf8ByteArray(text))];
+        }
+        // Returns a segment representing an Extended Channel Interpretation
+        // (ECI) designator with the given assignment value.
+        static makeEci(assignVal) {
+            let bb = [];
+            if (assignVal < 0)
+                throw new RangeError("ECI assignment value out of range");
+            else if (assignVal < (1 << 7))
+                appendBits(assignVal, 8, bb);
+            else if (assignVal < (1 << 14)) {
+                appendBits(0b10, 2, bb);
+                appendBits(assignVal, 14, bb);
+            }
+            else if (assignVal < 1000000) {
+                appendBits(0b110, 3, bb);
+                appendBits(assignVal, 21, bb);
+            }
+            else
+                throw new RangeError("ECI assignment value out of range");
+            return new QrSegment(QrSegment.Mode.ECI, 0, bb);
+        }
+        // Tests whether the given string can be encoded as a segment in numeric mode.
+        // A string is encodable iff each character is in the range 0 to 9.
+        static isNumeric(text) {
+            return QrSegment.NUMERIC_REGEX.test(text);
+        }
+        // Tests whether the given string can be encoded as a segment in alphanumeric mode.
+        // A string is encodable iff each character is in the following set: 0 to 9, A to Z
+        // (uppercase only), space, dollar, percent, asterisk, plus, hyphen, period, slash, colon.
+        static isAlphanumeric(text) {
+            return QrSegment.ALPHANUMERIC_REGEX.test(text);
+        }
+        /*-- Methods --*/
+        // Returns a new copy of the data bits of this segment.
+        getData() {
+            return this.bitData.slice(); // Make defensive copy
+        }
+        // (Package-private) Calculates and returns the number of bits needed to encode the given segments at
+        // the given version. The result is infinity if a segment has too many characters to fit its length field.
+        static getTotalBits(segs, version) {
+            let result = 0;
+            for (const seg of segs) {
+                const ccbits = seg.mode.numCharCountBits(version);
+                if (seg.numChars >= (1 << ccbits))
+                    return Infinity; // The segment's length doesn't fit the field's bit width
+                result += 4 + ccbits + seg.bitData.length;
+            }
+            return result;
+        }
+        // Returns a new array of bytes representing the given string encoded in UTF-8.
+        static toUtf8ByteArray(str) {
+            str = encodeURI(str);
+            let result = [];
+            for (let i = 0; i < str.length; i++) {
+                if (str.charAt(i) != "%")
+                    result.push(str.charCodeAt(i));
+                else {
+                    result.push(parseInt(str.substring(i + 1, i + 3), 16));
+                    i += 2;
+                }
+            }
+            return result;
+        }
+    }
+    /*-- Constants --*/
+    // Describes precisely all strings that are encodable in numeric mode.
+    QrSegment.NUMERIC_REGEX = /^[0-9]*$/;
+    // Describes precisely all strings that are encodable in alphanumeric mode.
+    QrSegment.ALPHANUMERIC_REGEX = /^[A-Z0-9 $%*+.\/:-]*$/;
+    // The set of all legal characters in alphanumeric mode,
+    // where each character value maps to the index in the string.
+    QrSegment.ALPHANUMERIC_CHARSET = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ $%*+-./:";
+    qrcodegen.QrSegment = QrSegment;
+})(qrcodegen || (qrcodegen = {}));
+/*---- Public helper enumeration ----*/
+(function (qrcodegen) {
+    var QrCode;
+    (function (QrCode) {
+        /*
+         * The error correction level in a QR Code symbol. Immutable.
+         */
+        class Ecc {
+            /*-- Constructor and fields --*/
+            constructor(
+            // In the range 0 to 3 (unsigned 2-bit integer).
+            ordinal, 
+            // (Package-private) In the range 0 to 3 (unsigned 2-bit integer).
+            formatBits) {
+                this.ordinal = ordinal;
+                this.formatBits = formatBits;
+            }
+        }
+        /*-- Constants --*/
+        Ecc.LOW = new Ecc(0, 1); // The QR Code can tolerate about  7% erroneous codewords
+        Ecc.MEDIUM = new Ecc(1, 0); // The QR Code can tolerate about 15% erroneous codewords
+        Ecc.QUARTILE = new Ecc(2, 3); // The QR Code can tolerate about 25% erroneous codewords
+        Ecc.HIGH = new Ecc(3, 2); // The QR Code can tolerate about 30% erroneous codewords
+        QrCode.Ecc = Ecc;
+    })(QrCode = qrcodegen.QrCode || (qrcodegen.QrCode = {}));
+})(qrcodegen || (qrcodegen = {}));
+/*---- Public helper enumeration ----*/
+(function (qrcodegen) {
+    var QrSegment;
+    (function (QrSegment) {
+        /*
+         * Describes how a segment's data bits are interpreted. Immutable.
+         */
+        class Mode {
+            /*-- Constructor and fields --*/
+            constructor(
+            // The mode indicator bits, which is a uint4 value (range 0 to 15).
+            modeBits, 
+            // Number of character count bits for three different version ranges.
+            numBitsCharCount) {
+                this.modeBits = modeBits;
+                this.numBitsCharCount = numBitsCharCount;
+            }
+            /*-- Method --*/
+            // (Package-private) Returns the bit width of the character count field for a segment in
+            // this mode in a QR Code at the given version number. The result is in the range [0, 16].
+            numCharCountBits(ver) {
+                return this.numBitsCharCount[Math.floor((ver + 7) / 17)];
+            }
+        }
+        /*-- Constants --*/
+        Mode.NUMERIC = new Mode(0x1, [10, 12, 14]);
+        Mode.ALPHANUMERIC = new Mode(0x2, [9, 11, 13]);
+        Mode.BYTE = new Mode(0x4, [8, 16, 16]);
+        Mode.KANJI = new Mode(0x8, [8, 10, 12]);
+        Mode.ECI = new Mode(0x7, [0, 0, 0]);
+        QrSegment.Mode = Mode;
+    })(QrSegment = qrcodegen.QrSegment || (qrcodegen.QrSegment = {}));
+})(qrcodegen || (qrcodegen = {}));
+</script>
+<script>/* Fiktive Kontoprofile. Die Reichweite ist eine Modellannahme, keine Ist-Aussage über eine Bank. */
+const KontoModel=(()=>{
+  const roles={
+    customer:{name:'Kundenkonto',icon:'person',scope:'Eigene Konten und persönliche Unterlagen',question:'Sind Anmeldung, Datenzugriff und Zahlungsfreigabe unabhängig voneinander abgesichert?',resources:[
+      {id:'balances',icon:'wallet',title:'Konten & Umsätze',scope:'Nur die eigenen Konten',kind:'direct',badge:'Lesen möglich',detail:'Die übernommene Sitzung erlaubt im Modell das Lesen der eigenen Konten und Umsätze des betroffenen Kunden. Andere Kundenkonten gehören nicht zu diesem Profil.'},
+      {id:'files',icon:'file',title:'Kundenunterlagen',scope:'Eigene Auszüge und Dokumente',kind:'direct',badge:'Lesen möglich',detail:'Auszüge und persönliche Unterlagen des betroffenen Kunden sind einsehbar. Für einen Vertraulichkeitsschaden muss keine Zahlung ausgeführt werden.'},
+      {id:'payments',icon:'transfer',title:'Zahlungsaufträge',scope:'Eigene Aufträge erfassen',kind:'guarded',badge:'Zusatzfreigabe fehlt',detail:'Ein Zahlungsauftrag kann vorbereitet werden. Im Szenario fehlt die zusätzlich erforderliche Freigabe für diesen Auftrag. Eine nutzbare Anmeldung ist nicht automatisch eine Zahlungsfreigabe.'},
+      {id:'internal',icon:'folder',title:'Interne Unterlagen',scope:'Kein interner Bankbereich',kind:'none',badge:'Kein Recht',detail:'Dieses Kundenkonto erhält keine Rechte auf interne Arbeitsunterlagen der Bank.'},
+      {id:'users',icon:'users',title:'Benutzer & Rechte',scope:'Keine fremden Konten oder Rollen',kind:'none',badge:'Kein Verwaltungsrecht',detail:'Das Profil besitzt keine Rechte zur Verwaltung fremder Benutzerkonten oder Rollen. Eigene Profileinstellungen werden hier nicht modelliert.'},
+      {id:'systems',icon:'server',title:'Technischer Betrieb',scope:'Keine Systemadministration',kind:'none',badge:'Kein Recht',detail:'Eine gestohlene Kundensitzung erhält im Modell keine Rechte zum Starten, Stoppen oder Verändern technischer Dienste.'}
+    ]},
+    employee:{name:'Mitarbeiterkonto',icon:'badge',scope:'Kundenservice: zugeordnete Kunden und Arbeitsbereiche',question:'Sind Mitarbeiterrechte auf die benötigten Kunden und Aufgaben begrenzt und werden sie regelmäßig geprüft?',resources:[
+      {id:'balances',icon:'wallet',title:'Konten & Umsätze',scope:'Zugeordnete Kunden im Service',kind:'direct',badge:'Lesen im Aufgabenbereich',detail:'Das fiktive Kundenservice-Konto kann die für seine Aufgaben zugeordneten Kundendaten lesen. Es besitzt keinen unbegrenzten Zugriff auf sämtliche Kunden oder alle Banken im Verbund.'},
+      {id:'files',icon:'file',title:'Kundenunterlagen',scope:'Unterlagen im Aufgabenbereich',kind:'direct',badge:'Lesen im Aufgabenbereich',detail:'Im vorgesehenen Servicebereich sind Kundenunterlagen einsehbar. Ein übernommenes Mitarbeiterkonto kann deshalb mehrere Kunden betreffen. Die konkrete Reichweite hängt von den tatsächlichen Rechten ab.'},
+      {id:'payments',icon:'transfer',title:'Zahlungsaufträge',scope:'Aufträge im Aufgabenbereich',kind:'guarded',badge:'Zweite Freigabe fehlt',detail:'Dieses Profil darf einen Auftrag erfassen. Im Szenario fehlen eine unabhängige zweite Freigabe und die vollständige Auftragsprüfung. Allein das Erfassungsrecht genügt nicht zur Ausführung.'},
+      {id:'internal',icon:'folder',title:'Interne Unterlagen',scope:'Eigener Servicebereich',kind:'direct',badge:'Lesen im Arbeitsbereich',detail:'Das Konto erreicht die Arbeitsunterlagen seines Servicebereichs. Personalakten, andere Fachbereiche und technische Geheimnisse sind damit nicht automatisch zugänglich.'},
+      {id:'users',icon:'users',title:'Benutzer & Rechte',scope:'Keine Verwaltung fremder Rollen',kind:'none',badge:'Kein Verwaltungsrecht',detail:'Das Kundenservice-Konto hat keine administrativen Rechte zur Vergabe von Rollen oder zur Verwaltung fremder Mitarbeiterkonten.'},
+      {id:'systems',icon:'server',title:'Technischer Betrieb',scope:'Keine Betriebsrechte',kind:'none',badge:'Kein Recht',detail:'Mit diesem Mitarbeiterprofil lassen sich die technischen Dienste im Modell nicht stoppen oder administrieren. Zusätzliche Schwachstellen und eine Ausweitung von Rechten werden hier nicht simuliert.'}
+    ]},
+    admin:{name:'Administratorkonto',icon:'settings',scope:'Technischer Betrieb der Onlinebanking-Plattform',question:'Wie sind privilegierte Zugänge begrenzt, überwacht und von fachlichen Freigaben sowie anderen Systembereichen getrennt?',resources:[
+      {id:'balances',icon:'wallet',title:'Konten & Umsätze',scope:'Mögliche technische Datenzugänge',kind:'review',badge:'Indirektes Risiko prüfen',detail:'Ein fachliches Leserecht ist nicht vorgesehen. Technische Kontrolle über Server oder Anwendungen kann trotzdem Zugriffe auf gespeicherte Daten, Verarbeitung oder Zugangsmittel ermöglichen. Das muss gesondert geprüft werden; eine Datenausleitung ist hier nicht nachgewiesen.'},
+      {id:'files',icon:'file',title:'Kundenunterlagen',scope:'Speicher- und Systemzugänge',kind:'review',badge:'Indirektes Risiko prüfen',detail:'Ob Dokumente oder Sicherungen über technische Rechte erreichbar sind, hängt von Speicherorten, Schlüsseln und der Aufgabentrennung ab. „Kein fachliches Leserecht“ belegt allein noch keinen wirksamen Schutz vor einem technischen Administrator.'},
+      {id:'payments',icon:'transfer',title:'Zahlungsaufträge',scope:'Kein fachliches Zahlungsrecht',kind:'review',badge:'Technische Umwege prüfen',detail:'Das Konto besitzt kein fachliches Erfassungs- oder Freigaberecht. Bei weitreichender Kontrolle über Anwendungen müssen auch technische Manipulationen betrachtet werden. Solche Wege werden in dieser vereinfachten Simulation nicht nachgebaut.'},
+      {id:'internal',icon:'folder',title:'Interne Unterlagen',scope:'Betrieb und Konfiguration',kind:'direct',badge:'Technische Infos sichtbar',detail:'Betriebsdokumentation und Konfiguration im eigenen technischen Bereich sind erreichbar. Diese Informationen können sensibel sein und weitere Angriffe erleichtern.'},
+      {id:'users',icon:'users',title:'Benutzer & Rechte',scope:'Technische Konten der Plattform',kind:'direct',badge:'Verwalten im eigenen Bereich',detail:'Das Konto darf technische Konten und Einstellungen seines Plattformbereichs verwalten. Es ist kein allgemeines Konto für alle Benutzer, Fachrollen, Bankanwendungen oder Dienstleister.'},
+      {id:'systems',icon:'server',title:'Technischer Betrieb',scope:'Onlinebanking einschließlich App',kind:'direct',badge:'Betrieb beeinflussen',detail:'In diesem Fall darf das Konto die Onlinebanking-Plattform beeinflussen. Ein Stopp trifft deshalb Onlinebanking und App. Filialsystem und Zahlungsabwicklung sind im fiktiven Modell davon getrennt.'}
+    ]}
+  };
+  function initial(role='customer',route='session',mfa=true){return {role,route,mfa,revoked:false,read:false,drafted:false,outage:false,selected:'balances',last:null};}
+  function open(s){return !s.revoked&&(s.route==='session'||!s.mfa);}
+  function resources(s){return roles[s.role].resources.map(r=>({...r,displayKind:open(s)?r.kind:'none',displayBadge:open(s)?r.badge:(s.revoked?'Zugang beendet':'Anmeldung blockiert')}));}
+  function defaultFeedback(s){
+    if(s.revoked)return {tone:'neutral',icon:'lock',title:'Der Zugang ist beendet.',text:s.outage?'Die zuständigen Stellen haben Konto und aktive Sitzung gesperrt. Die unterbrochene Plattform muss zusätzlich geprüft und wiederhergestellt werden.':'Im Modell können keine weiteren Aktionen erfolgen. Bereits eingesehene Informationen bleiben ein Vorfall.'};
+    if(!open(s))return {tone:'neutral',icon:'shield',title:'Das Passwort allein reicht hier nicht.',text:'Für eine neue Anmeldung fehlt der zusätzliche Faktor. Die MFA hält diesen Zugangsversuch im Modell auf. Die Rechte des Kontos bestehen weiterhin.'};
+    return {tone:'success',icon:'compass',title:'Der Zugang besteht. Was ermöglichen die Rechte?',text:s.role==='admin'?'Dieses Administratorkonto betreibt einen abgegrenzten Plattformbereich. Probieren Sie den Dienststopp aus und beachten Sie den Prüfbedarf bei technischen Datenzugriffen.':'Wählen Sie eine Aktion. Achten Sie darauf, welche Informationen erreichbar sind und welche zusätzliche Freigabe für eine Zahlung fehlt.'};
+  }
+  function action(s,type){
+    let n={...s};
+    const msg=(tone,icon,title,text)=>{n.last={tone,icon,title,text};return n;};
+    if(type==='contain'){
+      n.revoked=true;
+      return msg('neutral','lock','Zugang beendet. Folgen bleiben zu behandeln.',s.outage?'Konto und Sitzung sind im Modell gesperrt. Onlinebanking und App bleiben bis zur geprüften Wiederherstellung unterbrochen. Ein Passwortwechsel allein wäre dafür nicht ausreichend.':s.read?'Weitere Zugriffe sind im Modell unterbunden. Schon eingesehene Informationen werden dadurch nicht zurückgeholt. Betroffenheit und weitere Maßnahmen sind zu klären.':'Konto und aktive Sitzung sind im Modell gesperrt. Die zuständigen Stellen klären zusätzlich, ob zuvor Daten gelesen oder Änderungen vorgenommen wurden.');
+    }
+    if(type==='restore'){
+      if(!s.outage)return msg('neutral','check','Kein unterbrochener Dienst im Modell.','Die Plattform ist verfügbar. Mögliche Datenzugriffe oder Auftragsentwürfe sind davon getrennt zu beurteilen.');
+      if(!s.revoked)return msg('warning','shield','Zuerst den unberechtigten Zugang beenden.','Eine Wiederherstellung bei weiter nutzbarem Angreiferzugang wäre keine ausreichende Bereinigung.');
+      n.outage=false;
+      return msg('success','check','Nach Prüfung wieder verfügbar.','Die Fachstellen haben den Dienst im Modell geprüft und wiederhergestellt. Onlinebanking und App sind wieder verfügbar. Mögliche Datenzugriffe und sonstige Folgen müssen weiterhin aufgearbeitet werden.');
+    }
+    if(!open(s))return msg('neutral','shield',s.revoked?'Aktion blockiert: Zugang beendet.':'Aktion blockiert: zusätzlicher Faktor fehlt.',s.revoked?'Konto und aktive Sitzung wurden im Modell gesperrt. Frühere Folgen werden dadurch nicht automatisch rückgängig.':'Mit dem Passwort allein entsteht in dieser Variante keine nutzbare Anmeldung. Wechseln Sie für den Vergleich zur bereits übernommenen Sitzung.');
+    if(type==='read'){
+      n.read=true;n.selected=s.role==='admin'?'internal':'balances';
+      return msg(s.role==='admin'?'warning':'danger','eye',s.role==='admin'?'Technische Betriebsinformationen sind einsehbar.':'Vertrauliche Daten sind eingesehen.',s.role==='customer'?'Die Konten, Umsätze und Unterlagen des betroffenen Kunden sind sichtbar. Andere Kundenkonten bleiben außerhalb dieses Profils. Die Bankleistungen können dabei vollständig verfügbar bleiben.':s.role==='employee'?'Der Angreifer kann im zugeordneten Kunden- und Servicebereich mitlesen. Das kann mehrere Kunden betreffen. Es entstehen dadurch keine zusätzlichen Administrationsrechte.':'Die Betriebsunterlagen im eigenen Plattformbereich sind sichtbar. Ob darüber hinaus Fachdaten technisch erreicht wurden, muss geprüft werden. Die Simulation behauptet keine bestätigte Datenausleitung.');
+    }
+    if(type==='draft'){
+      n.selected='payments';
+      if(s.role==='admin')return msg('warning','shield','Kein fachliches Erfassungsrecht.','Dieses Administratorkonto kann im fachlichen Zahlungsworkflow keinen Auftrag erfassen. Mögliche technische Manipulationen sind ein eigener Prüfpunkt und werden hier nicht simuliert.');
+      n.drafted=true;
+      return msg('warning','transfer','Auftrag erfasst. Noch kein Geld abgeflossen.',s.role==='customer'?'Ein fiktiver Auftrag über 1.250 Euro ist für das eigene Konto vorbereitet. Die zusätzliche Auftragsfreigabe fehlt. Probieren Sie nun die Freigabe aus.':'Ein fiktiver Auftrag über 1.250 Euro ist im zugeordneten Servicebereich erfasst. Eine unabhängige zweite Freigabe und die vollständige Auftragsprüfung bleiben erforderlich.');
+    }
+    if(type==='release'){
+      n.selected='payments';
+      if(s.role==='admin')return msg('warning','shield','Kein fachliches Freigaberecht.','Administrative Betriebsrechte erteilen in diesem Profil kein fachliches Zahlungsrecht. Ob technische Rechte Umgehungen ermöglichen könnten, ist gesondert zu beurteilen.');
+      if(!s.drafted)return msg('neutral','transfer','Noch kein Auftrag vorbereitet.','Erfassen Sie zunächst einen Zahlungsauftrag. Die Freigabe bleibt ein eigener Schritt mit einer zusätzlichen Voraussetzung.');
+      return msg('success','shield','Die zusätzliche Freigabe hält die Zahlung auf.',s.role==='customer'?'Für diesen Auftrag fehlt im Modell die gesonderte Zahlungsfreigabe. Der Kontozugang allein genügt nicht. Der schon mögliche Datenzugriff bleibt trotzdem ein eigenständiger Schaden.':'Im Modell fehlt die unabhängige zweite Freigabe. Das Erfassungsrecht einer Person genügt nicht zur Ausführung. Die Auftragsprüfung und der Schutz des zweiten Zugangs bleiben wichtig.');
+    }
+    if(type==='stop'){
+      n.selected='systems';
+      if(s.role!=='admin')return msg('neutral','shield','Kein Recht zum Dienststopp.','Dieses Profil besitzt keine technischen Betriebsrechte. Zusätzliche Schwachstellen oder eine Ausweitung der Rechte gehören nicht zu diesem Szenario.');
+      n.outage=true;
+      return msg('danger','power','Onlinebanking und App sind unterbrochen.','Das Konto kann die zugeordnete Plattform stoppen. Neue Onlineaufträge können nicht erfasst werden. Filialbetrieb und die bestehende Zahlungsabwicklung laufen im fiktiven Modell weiter. Sperren Sie nun den Zugang und stellen Sie den Dienst anschließend geprüft wieder her.');
+    }
+    return n;
+  }
+  return {roles,initial,open,resources,action,defaultFeedback};
+})();
+globalThis.KontoModel=KontoModel;
+
+if(typeof document!=='undefined')(()=>{
+  const icons={
+    person:'<circle cx="12" cy="8" r="3.5"/><path d="M5 21v-2a7 7 0 0 1 14 0v2"/>',
+    badge:'<rect x="4" y="4" width="16" height="17" rx="3"/><path d="M9 4V2m6 2V2M8 17h8"/><circle cx="12" cy="10" r="2"/><path d="M9 14a3 3 0 0 1 6 0"/>',
+    settings:'<circle cx="12" cy="12" r="3"/><path d="m9 3-.5 2-2 .8-1.8-1-2 3.4 1.6 1.5-.2 2.3-1.8 1.2 1.9 3.5 2.1-.5 1.8 1.4.3 2.2h4l.6-2 2-.9 1.9 1 2-3.5-1.5-1.5.2-2.2 1.8-1.3-2-3.4-2 .5-1.8-1.4-.3-2.1Z"/>',
+    wallet:'<rect x="3" y="5" width="18" height="15" rx="3"/><path d="M3 8V5a2 2 0 0 1 2-2h13M16 11h6v5h-6a2.5 2.5 0 0 1 0-5Z"/><path d="M17 13.5h.1"/>',
+    file:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M8 13h8m-8 4h6"/>',
+    folder:'<path d="M3 7V5a2 2 0 0 1 2-2h5l2 3h7a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/><path d="M3 10h18"/>',
+    users:'<circle cx="9" cy="8" r="3"/><path d="M3 21v-3a6 6 0 0 1 12 0v3m1-16a3 3 0 0 1 0 6m3 10v-3a6 6 0 0 0-2-4"/>',
+    server:'<rect x="3" y="3" width="18" height="7" rx="2"/><rect x="3" y="14" width="18" height="7" rx="2"/><path d="M7 6.5h.1M7 17.5h.1M11 6.5h6m-6 11h6"/>',
+    transfer:'<path d="M3 7h17m-5-5 5 5-5 5M21 17H4m5-5-5 5 5 5"/>',
+    eye:'<path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/>',
+    shield:'<path d="M12 2 3 6v6c0 5 9 10 9 10s9-5 9-10V6Z"/><path d="m8 12 3 3 5-6"/>',
+    lock:'<rect x="4" y="10" width="16" height="12" rx="2"/><path d="M8 10V6a4 4 0 0 1 8 0v4m-4 5v3"/>',
+    power:'<path d="M12 2v10M6.3 5a9 9 0 1 0 11.4 0"/>',
+    check:'<path d="m5 12 4 4L20 5"/><path d="M21 12a9 9 0 1 1-9-9"/>',
+    refresh:'<path d="M21 3v6h-6M3 21v-6h6"/><path d="M4.5 8a8 8 0 0 1 13.2-3L21 9M3 15l3.3 4A8 8 0 0 0 19.5 16"/>',
+    compass:'<circle cx="12" cy="12" r="10"/><path d="m16 8-2.5 5.5L8 16l2.5-5.5Z"/>',
+    qr:'<rect x="3" y="3" width="6" height="6" rx=".5"/><rect x="15" y="3" width="6" height="6" rx=".5"/><rect x="3" y="15" width="6" height="6" rx=".5"/><path d="M15 15h3v3h3v3m-6 0v-3m6-6v3M3 12h6m3-9v6m0 3v3m0 6h.1"/>',
+    expand:'<path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/>',
+    download:'<path d="M12 3v12m-5-5 5 5 5-5M4 17v4h16v-4"/>',
+    copy:'<rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V3H3v13h5"/>',
+    monitor:'<rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 22h8m-4-5v5"/>',
+    mobile:'<rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/>',
+    bank:'<path d="m3 8 9-5 9 5M3 10h18M5 10v9m7-9v9m7-9v9M2 21h20"/>'
+  };
+  const svg=(id)=>`<svg viewBox="0 0 24 24" aria-hidden="true">${icons[id]||icons.shield}</svg>`;
+  const $=id=>document.getElementById(id);
+  const esc=t=>String(t).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  document.querySelectorAll('[data-icon]').forEach(e=>e.innerHTML=svg(e.dataset.icon));
+  let state=KontoModel.initial();
+  let qrSvg='',qrUrl='';
+
+  function drawConnections(){
+    const box=$('accessMap').getBoundingClientRect();
+    if(!box.width)return;
+    const root=$('identityBar').getBoundingClientRect();
+    const sourceX=root.left-box.left+root.width/2,sourceY=root.bottom-box.top-1;
+    const paths=[...document.querySelectorAll('.resource-card')].map((card,i)=>{
+      const r=card.getBoundingClientRect();
+      const x=r.left-box.left+r.width/2,y=r.top-box.top-3;
+      const k=KontoModel.resources(state)[i].displayKind;
+      const bend=sourceY+13;
+      return `<path class="connection ${k}" d="M${sourceX},${sourceY} V${bend} H${x} V${y}"/>`;
+    }).join('');
+    $('connections').setAttribute('viewBox',`0 0 ${box.width} ${box.height}`);
+    $('connections').innerHTML=paths;
+  }
+  function renderDetail(){
+    const r=KontoModel.roles[state.role].resources.find(x=>x.id===state.selected);
+    const prefix=KontoModel.open(state)?'':state.revoked?'Der unberechtigte Zugang ist beendet. ':'Die Anmeldung ist derzeit blockiert. ';
+    $('resourceDetail').innerHTML=`<strong>${esc(r.title)} <span class="detail-tag">· ${esc(r.scope)}</span></strong><p>${esc(prefix+r.detail)}</p>`;
+  }
+  function render(){
+    const role=KontoModel.roles[state.role],active=KontoModel.open(state);
+    document.querySelectorAll('[data-role]').forEach(b=>{const on=b.dataset.role===state.role;b.classList.toggle('selected',on);b.setAttribute('aria-pressed',String(on));});
+    document.querySelectorAll('input[name="entry"]').forEach(i=>i.checked=i.value===state.route);
+    $('mfaToggle').checked=state.mfa;
+    $('entrySummary').textContent=state.route==='session'?'Gültige Sitzung übernommen':state.mfa?'Nur Passwort · MFA aktiv':'Nur Passwort · ohne MFA';
+    $('mfaHint').textContent=(state.route==='session'?'MFA schützt neue Anmeldungen. Die als nutzbar angenommene Sitzung wird dadurch hier nicht beendet.':state.mfa?'Mit dem Passwort allein fehlt der zusätzliche Faktor.':'Für diesen Vergleich ist die Zusatzanmeldung ausgeschaltet.')+' Änderungen am Zugang starten eine neue Variante.';
+    $('accessStatus').className='status-chip '+(active?'active':'blocked');
+    $('accessStatus').textContent=state.revoked?'Zugang beendet':active?'Zugang besteht':'Anmeldung blockiert';
+    $('identityAvatar').innerHTML=svg(role.icon);
+    $('identityTitle').textContent=role.name;
+    $('identityScope').textContent=role.scope;
+    $('identityBadge').textContent=state.route==='session'?'ÜBERNOMMENE SITZUNG':'ANMELDEVERSUCH';
+    $('resourceGrid').innerHTML=KontoModel.resources(state).map((r,i)=>`<button class="resource-card ${r.displayKind}${state.selected===r.id?' selected':''}" data-resource="${r.id}" aria-pressed="${state.selected===r.id}"><span class="resource-top"><span data-icon="${r.icon}">${svg(r.icon)}</span><span class="resource-number">0${i+1}</span></span><strong>${esc(r.title)}</strong><span class="resource-scope">${esc(r.scope)}</span><span class="resource-badge">${esc(r.displayBadge)}</span></button>`).join('');
+    renderDetail();
+    const f=state.last||KontoModel.defaultFeedback(state);
+    $('feedbackPanel').className='feedback-panel '+f.tone;
+    $('feedbackIcon').innerHTML=svg(f.icon);
+    $('feedbackLabel').textContent=state.last?'ERGEBNIS DER SIMULATION':'IHR EXPERIMENT';
+    $('feedbackTitle').textContent=f.title;
+    $('feedbackText').textContent=f.text;
+    const services=[['Onlinebanking','monitor',state.outage],['App','mobile',state.outage],['Filialbetrieb','bank',false],['Zahlungsabwicklung','transfer',false]];
+    $('serviceGrid').innerHTML=services.map(([name,icon,down])=>`<div class="service-card ${down?'down':''}"><span class="service-name">${svg(icon)}${name}</span><span class="service-state">${down?'Unterbrochen':'Verfügbar'}</span></div>`).join('');
+    $('serviceNote').textContent=state.outage?'Onlinebanking und App hängen hier von derselben Plattform ab. Filialbetrieb und bestehende Zahlungsabwicklung sind im fiktiven Modell getrennt.':state.read?'Die Dienste sind verfügbar. Trotzdem wurden im Modell Informationen eingesehen. Verfügbarkeit allein beschreibt den Schutz der Daten nicht.':'Die Bankleistungen sind im Modell verfügbar. Mit einer Aktion können Sie die Folgen für Daten und Betrieb sichtbar machen.';
+    const conf=state.read?(state.role==='admin'?'Betriebsinfos eingesehen · Fachdaten prüfen':'Vertraulichkeit: Daten eingesehen'):'Vertraulichkeit: noch keine Leseaktion';
+    const integ=state.drafted?'Integrität: Auftrag vorbereitet, nicht freigegeben':'Integrität: keine Auftragsänderung simuliert';
+    $('impactLine').innerHTML=`<span class="impact-pill ${state.read?'warn':''}">${esc(conf)}</span><span class="impact-pill ${state.drafted?'warn':''}">${esc(integ)}</span><span class="impact-pill ${state.outage?'alert':''}">Verfügbarkeit: ${state.outage?'Plattform unterbrochen':'Dienste verfügbar'}</span>`;
+    $('boardQuestion').textContent=role.question;
+    $('containBtn').disabled=state.revoked;
+    $('containBtn').innerHTML=svg('lock')+(state.revoked?'Zugang im Modell beendet':'Zugang sperren & Sitzung beenden');
+    $('restoreBtn').hidden=!state.outage;
+    $('restoreBtn').disabled=!state.revoked;
+    $('containHint').textContent=state.outage?(state.revoked?'Der Dienst ist noch unterbrochen. Prüfung und Wiederherstellung sind ein weiterer Schritt.':'Zuerst den Zugang beenden. Dann die sichere Wiederherstellung prüfen.'):(state.revoked&&state.read?'Schon eingesehene Informationen bleiben zu behandeln.':'Die Sperrung beendet im Modell auch die aktive Sitzung.');
+    requestAnimationFrame(drawConnections);
+  }
+  document.querySelectorAll('[data-role]').forEach(b=>b.addEventListener('click',()=>{state=KontoModel.initial(b.dataset.role);render();}));
+  document.querySelectorAll('input[name="entry"]').forEach(i=>i.addEventListener('change',()=>{state=KontoModel.initial(state.role,i.value,state.mfa);render();}));
+  $('mfaToggle').addEventListener('change',e=>{state=KontoModel.initial(state.role,state.route,e.target.checked);render();});
+  document.querySelectorAll('[data-action]').forEach(b=>b.addEventListener('click',()=>{state=KontoModel.action(state,b.dataset.action);render();if(window.innerWidth<=620)$('feedbackPanel').scrollIntoView({behavior:'smooth',block:'start'});}));
+  $('resourceGrid').addEventListener('click',e=>{const b=e.target.closest('[data-resource]');if(!b)return;state.selected=b.dataset.resource;render();});
+  $('containBtn').addEventListener('click',()=>{state=KontoModel.action(state,'contain');render();});
+  $('restoreBtn').addEventListener('click',()=>{state=KontoModel.action(state,'restore');render();});
+  $('resetBtn').addEventListener('click',()=>{state=KontoModel.initial(state.role);render();});
+  $('presenterBtn').addEventListener('click',()=>{const p=document.body.classList.toggle('presenter');$('presenterBtn').setAttribute('aria-pressed',String(p));requestAnimationFrame(drawConnections);});
+  $('compareBtn').addEventListener('click',()=>$('compareDialog').showModal());
+  document.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click',()=>$(b.dataset.close).close()));
+  document.querySelectorAll('dialog').forEach(d=>d.addEventListener('click',e=>{if(e.target!==d)return;const r=d.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)d.close();}));
+
+  function makeQr(){
+    const input=$('shareUrl').value.trim();
+    $('shareError').textContent='';$('shareStatus').textContent='';
+    try{
+      const u=new URL(input);
+      if(!['https:','http:'].includes(u.protocol))throw new Error('Bitte eine vollständige Webadresse mit https:// eingeben.');
+      if(u.username||u.password)throw new Error('Bitte eine öffentliche Seitenadresse ohne Zugangsdaten verwenden.');
+      u.hash='';
+      qrUrl=u.href;
+      if(qrUrl.length>1300)throw new Error('Die Adresse ist zu lang. Verwenden Sie die kurze Seitenadresse ohne zusätzliche Parameter.');
+      const qr=qrcodegen.QrCode.encodeText(qrUrl,qrcodegen.QrCode.Ecc.MEDIUM);
+      const border=4,size=qr.size+border*2;let path='';
+      for(let y=0;y<qr.size;y++)for(let x=0;x<qr.size;x++)if(qr.getModule(x,y))path+=`M${x+border},${y+border}h1v1h-1z `;
+      qrSvg=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}" role="img" aria-label="QR-Code zur Spielwiese" shape-rendering="crispEdges"><rect width="${size}" height="${size}" fill="#fff"/><path d="${path}" fill="#000"/></svg>`;
+      $('qrMount').innerHTML=qrSvg;
+      $('qrUrlLabel').textContent=qrUrl;
+      $('qrResult').hidden=false;
+      if(['localhost','127.0.0.1','[::1]'].includes(u.hostname))$('shareStatus').textContent='Das ist eine lokale Testadresse. Für die Teilnehmer die veröffentlichte GitHub-Pages-Adresse verwenden.';
+    }catch(e){qrSvg='';qrUrl='';$('qrResult').hidden=true;$('shareError').textContent=e instanceof TypeError?'Bitte eine vollständige Seitenadresse eingeben, zum Beispiel https://NAME.github.io/REPOSITORY/konten.html.':e.message;}
+  }
+  $('shareBtn').addEventListener('click',()=>{
+    const web=['http:','https:'].includes(location.protocol);
+    if(!$('shareUrl').value&&web)$('shareUrl').value=location.origin+location.pathname;
+    $('shareIntro').textContent=web?'Die Adresse dieser Seite wird übernommen. Prüfen Sie, dass dies die veröffentlichte Teilnehmerseite ist.':'Sie haben die Datei lokal geöffnet. Nach dem Hochladen auf GitHub wird hier die veröffentlichte Adresse automatisch übernommen. Sie können sie auch selbst eintragen.';
+    $('shareDialog').showModal();
+    if($('shareUrl').value)makeQr();
+  });
+  $('createQrBtn').addEventListener('click',makeQr);
+  $('shareUrl').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();makeQr();}});
+  $('shareUrl').addEventListener('input',()=>{qrSvg='';qrUrl='';$('qrResult').hidden=true;$('shareStatus').textContent='';$('shareError').textContent='';});
+  $('copyLinkBtn').addEventListener('click',async()=>{
+    if(!qrUrl)return;
+    try{await navigator.clipboard.writeText(qrUrl);$('shareStatus').textContent='Link kopiert.';}catch{$('shareUrl').focus();$('shareUrl').select();$('shareStatus').textContent='Bitte die markierte Adresse mit Strg+C beziehungsweise Kopieren übernehmen.';}
+  });
+  $('downloadQrBtn').addEventListener('click',()=>{
+    if(!qrSvg||!qrUrl)return;
+    const blob=new Blob([qrSvg],{type:'image/svg+xml;charset=utf-8'}),url=URL.createObjectURL(blob),img=new Image();
+    img.onload=()=>{try{const canvas=document.createElement('canvas');canvas.width=1200;canvas.height=1200;const ctx=canvas.getContext('2d');ctx.fillStyle='#fff';ctx.fillRect(0,0,1200,1200);ctx.imageSmoothingEnabled=false;ctx.drawImage(img,0,0,1200,1200);canvas.toBlob(png=>{if(!png){$('shareStatus').textContent='PNG konnte nicht erstellt werden.';return;}const data=URL.createObjectURL(png),a=document.createElement('a');a.href=data;a.download='qr-konten.png';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(data),5000);$('shareStatus').textContent='QR-Code als PNG erstellt. Die Datei enthält die oben angezeigte Adresse.';},'image/png');}catch{$('shareStatus').textContent='Der PNG-Download ist in diesem Browser nicht möglich.';}finally{URL.revokeObjectURL(url);}};
+    img.onerror=()=>{URL.revokeObjectURL(url);$('shareStatus').textContent='QR-Code konnte nicht als Bild geladen werden.';};img.src=url;
+  });
+  if(typeof ResizeObserver!=='undefined')new ResizeObserver(drawConnections).observe($('accessMap'));
+  window.addEventListener('resize',drawConnections);
+  window.AccountSimulation={getState:()=>structuredClone(state),getQrSvg:()=>qrSvg,getQrUrl:()=>qrUrl};
+  render();
+})();
+</script>
+</body>
+</html>
